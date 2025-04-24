@@ -1,5 +1,4 @@
 import { createBrowserRouter,Outlet} from "react-router-dom";
-import CityListing from "../Pages/CityListing/CityListing";
 import BuilderListing from "../Pages/BuilderListing";
 import ProjectListing from "../Pages/ProjectListing";
 import ProjectDetails from "../Pages/ProjectDetails";
@@ -11,6 +10,7 @@ import { cityLoader } from "../loaders/cityLoader";
 import { builderLoader } from "../loaders/builderloader";
 import { projectListingLoader } from "../loaders/projectsLoader";
 import Home from "../Pages/Homepage";
+import CityListing from "../Pages/CityListing";
 
 export const router = createBrowserRouter([
     {
