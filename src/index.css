@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@layer base {
+    html {
+      font-size: 100%;
+    }
+  
+    @media (max-width:1024px) {
+      html {
+        font-size: 87.5%;
+      }
+    }
+  
+    @media (max-width: 640px) {
+      html {
+        font-size: 75%;
+      }
+    }
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;    /* Firefox */
+  }
+  .custom-slider-arrows .slick-prev:before,
+.custom-slider-arrows .slick-next:before {
+  color: black !important; /* or use another visible color */
+  font-size: 24px !important;
+}
