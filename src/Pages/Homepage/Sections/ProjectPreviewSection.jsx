@@ -15,11 +15,17 @@ const ProjectPreviewSection = () => {
     arrows: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 3, // Default for 1200px and above
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 600,
+        breakpoint: 1200, // Below 1200px
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 600, // Below 600px
         settings: {
           slidesToShow: 1,
         },
@@ -35,7 +41,7 @@ const ProjectPreviewSection = () => {
       <div className="flex justify-center items-center mb-[20px] text-[1.75rem] font-bold">
         <h3>Featured Projects</h3>
       </div>
-      <div className="w-full custom-slider-arrows">
+      <div className="w-full custom-slider-arrows px-5">
         <Slider {...settings}>
           {data.map((item) => (
             <ProjectPreviewCard item = {item}
