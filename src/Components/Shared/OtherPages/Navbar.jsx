@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import ToogleMenu from "../../ToogleMenu";
 import Wrapper from "../../UI/OtherPages/Wrapper";
 import Megamenu from "../../Megamenu";
+import { useLocation } from "react-router-dom";
 
 
 export const list3 = [
@@ -25,9 +26,9 @@ export const list4 = [
 
 export default function Navbar({data}) {
   const {states,projectBy} = data;
+  const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
 
   const menuRef = useRef(null);
 
@@ -47,6 +48,10 @@ export default function Navbar({data}) {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]); 
 
   function handleClick() {
     setIsOpen((cur) => {

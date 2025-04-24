@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import MenuWithSubMenu from "./MenuWithSubmenu";
 import {list3,list4 } from "./Shared/OtherPages/Navbar";
 import { FaFacebook, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
-import { useLocation } from "react-router-dom";
 
 export default function Togglemenu({data}) {
   const {states,projectBy} = data;
