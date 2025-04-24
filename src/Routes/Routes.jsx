@@ -10,7 +10,7 @@ import { stateAndProjectByLoader } from "../loaders/stateAndProjectByLoader";
 import { cityLoader } from "../loaders/cityLoader";
 import { builderLoader } from "../loaders/builderloader";
 import { projectListingLoader } from "../loaders/projectsLoader";
-import Home from "../Pages/Homepage/Homepage";
+import Home from "../Pages/CityListing/Homepage";
 
 export const router = createBrowserRouter([
     {
