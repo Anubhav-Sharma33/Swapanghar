@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
           loader:builderLoader,
         },
         {
-          path:"projects",
+          path:"projects/:projectType",
           element:<ProjectListing/>,
           loader:projectListingLoader
         },

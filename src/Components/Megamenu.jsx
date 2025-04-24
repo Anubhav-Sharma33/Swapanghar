@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Megamenu(props) {
     const { title, list } = props;
   
@@ -10,18 +12,24 @@ export default function Megamenu(props) {
           <ul className="grid grid-cols-4 gap-4 text-gray-700">
             {list.map((cur, index) => {
               let val = "";
+              let href = "";
               if(title === "Builder"){
-                val = cur.builderName}
+                val = cur.builderName
+                href = "/builder/"+cur.builderName.replace(/\s+/g, "").toLowerCase()
+                }
                 else if(title === "Projects"){
-                val = cur.projectType} 
-                else if(title === "City"){
-                val = cur.name}
+                val = cur.projectType
+                href = "/projects/"+cur.projectType.replace(/\s+/g, "").toLowerCase()
+                }else if(title === "City"){
+                val = cur.name
+                href = "/city/"+cur.name.replace(/\s+/g, "").toLowerCase()
+                }
               return(
-                <a href="#">
+                <Link to = {href}>
                   <li key={index} className="text-sm py-2 border-b border-gray-200">
                   {val}
               </li>
-              </a>
+              </Link>
               )
             })}
           </ul>
