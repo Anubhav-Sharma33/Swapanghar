@@ -140,7 +140,7 @@ export default function Navbar({data}) {
           <span id="menuLine1" className="block w-6 h-0.5 bg-black mb-1"></span>
           <span id="menuLine2" className="block w-6 h-0.5 bg-black mb-1"></span>
           <span id="menuLine3" className="block w-6 h-0.5 bg-black mb-1"></span>
-          {isOpen && <ToogleMenu data = {data} setShowMenu={setShowMenu}/>}
+          {isOpen && <ToogleMenu data = {data} />}
         </div>
       </div>
     </Wrapper>

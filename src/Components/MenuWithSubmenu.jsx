@@ -7,7 +7,6 @@ export default function MenuWithSubMenu({
   openIndex,
   handleToggle,
   isLargeScreen,
-  setShowMenu
 }) {
   // Force the MEDIA submenu open on large screens.
   const alwaysOpen = isLargeScreen && title === "Media";
@@ -83,7 +82,7 @@ export default function MenuWithSubMenu({
                 }
             return (
               <li key={i}>
-                <Link onClick={() => setShowMenu(false)}
+                <Link
                   to={href}
                   className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                 >
