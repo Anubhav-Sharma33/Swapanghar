@@ -27,6 +27,8 @@ export default function Navbar({data}) {
   const {states,projectBy} = data;
 
   const [isOpen, setIsOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -138,7 +140,7 @@ export default function Navbar({data}) {
           <span id="menuLine1" className="block w-6 h-0.5 bg-black mb-1"></span>
           <span id="menuLine2" className="block w-6 h-0.5 bg-black mb-1"></span>
           <span id="menuLine3" className="block w-6 h-0.5 bg-black mb-1"></span>
-          {isOpen && <ToogleMenu data = {data}/>}
+          {isOpen && <ToogleMenu data = {data} setShowMenu={setShowMenu}/>}
         </div>
       </div>
     </Wrapper>

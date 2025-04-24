@@ -7,6 +7,7 @@ export default function MenuWithSubMenu({
   openIndex,
   handleToggle,
   isLargeScreen,
+  setShowMenu
 }) {
   // Force the MEDIA submenu open on large screens.
   const alwaysOpen = isLargeScreen && title === "Media";
@@ -65,7 +66,7 @@ export default function MenuWithSubMenu({
           } scrollbar-hide`}
         >
           {list.map((cur, i) => {
-            let val = "";
+            let val = "/";
               let href = "";
               if(title === "Builder"){
                 val = cur.builderName
@@ -77,10 +78,12 @@ export default function MenuWithSubMenu({
                 }else if(title === "City"){
                 val = cur.name
                 href = "/city/"+cur.name.replace(/\s+/g, "").toLowerCase()
+                }else{
+                  val = cur.listType;
                 }
             return (
               <li key={i}>
-                <Link
+                <Link onClick={() => setShowMenu(false)}
                   to={href}
                   className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                 >

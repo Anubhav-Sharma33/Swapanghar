@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import MenuWithSubMenu from "./MenuWithSubmenu";
 import {list3,list4 } from "./Shared/OtherPages/Navbar";
 import { FaFacebook, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { useLocation } from "react-router-dom";
 
-export default function Togglemenu({data}) {
+export default function Togglemenu({data,setShowMenu}) {
   const {states,projectBy} = data;
   const [openIndex, setOpenIndex] = useState(null);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -17,6 +19,9 @@ export default function Togglemenu({data}) {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  useEffect(() => {
+    setShowMenu(false);
+  }, [location.pathname]); 
 
   const handleToggle = (index) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -58,10 +63,10 @@ export default function Togglemenu({data}) {
             </a>
           </li>
 
-          <MenuWithSubMenu title = {"City"} list={states} index={0} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen} />
-          <MenuWithSubMenu title = {"Builder"} list={projectBy} index={1} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen} />
-          <MenuWithSubMenu  title = {"Projects"} list={list3} index={2} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen} />
-          <MenuWithSubMenu title = {"Media"} list={list4} index={3} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen} />
+          <MenuWithSubMenu title = {"City"} list={states} index={0} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen} setShowMenu={setShowMenu} />
+          <MenuWithSubMenu title = {"Builder"} list={projectBy} index={1} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen} setShowMenu={setShowMenu}/>
+          <MenuWithSubMenu  title = {"Projects"} list={list3} index={2} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen} setShowMenu={setShowMenu}/>
+          <MenuWithSubMenu title = {"Media"} list={list4} index={3} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen} setShowMenu={setShowMenu}/>
 
           <li>
             <a href="#" className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
