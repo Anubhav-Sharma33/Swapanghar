@@ -1,8 +1,8 @@
 import { createBrowserRouter,Outlet} from "react-router-dom";
 import CityListing from "../Pages/CityListing/CityListing";
-import BuilderListing from "../Pages/BuilderListing/BuilderListing";
-import ProjectListing from "../Pages/ProjectListing/ProjectListing";
-import ProjectDetails from "../Pages/ProjectDetails/ProjectDetails";
+import BuilderListing from "../Pages/BuilderListing";
+import ProjectListing from "../Pages/ProjectListing";
+import ProjectDetails from "../Pages/ProjectDetails";
 import { projectLoader } from "../loaders/projectLoader";
 import { Suspense, lazy } from "react";
 import Root from "../Components/Shared/OtherPages/Root";
@@ -10,7 +10,7 @@ import { stateAndProjectByLoader } from "../loaders/stateAndProjectByLoader";
 import { cityLoader } from "../loaders/cityLoader";
 import { builderLoader } from "../loaders/builderloader";
 import { projectListingLoader } from "../loaders/projectsLoader";
-import Home from "../Pages/CityListing/Homepage";
+import Home from "../Pages/Homepage";
 
 export const router = createBrowserRouter([
     {

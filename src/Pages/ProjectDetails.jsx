@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
-import FormModalContext from "../../Store/Context/FormModalContext";
-import Header from "../../Components/Shared/ProjectDetails/Header";
-import Footer from "../../Components/Shared/Footer";
-import LowerNavBar from "../../Components/Shared/ProjectDetails/LowerNavBAr";
-import BannerSection from "./Sections/BannerSection";
-import FormSection from "./Sections/FormSection";
-import WalkThroughSection from "./Sections/WalkThroughSection";
-import AmenitiesSection from "./Sections/AmenitiesSection";
-import FloorPlanSection from "./Sections/FloorPlanSection";
-import GallerySection from "./Sections/GallerySection";
-import LocationSection from "./Sections/LocationSection";
-import GetInTouchSection from "./Sections/GetINTouchSection";
-import FaqSection from "./Sections/FaqSection";
-import AboutSection from "./Sections/AboutSection";
-import CompanyInfoSection from "./Sections/CompanyInfoSection";
-import ContextModalProvider from "../../Store/Context/ContentModalContext";
+import FormModalContext from "../Store/Context/FormModalContext";
+import Header from "../Components/Shared/ProjectDetails/Header";
+import Footer from "../Components/Shared/Footer";
+import LowerNavBar from "../Components/Shared/ProjectDetails/LowerNavBAr";
+import BannerSection from "./ProjectDetails/Sections/BannerSection";
+import FormSection from "./ProjectDetails/Sections/FormSection";
+import WalkThroughSection from "./ProjectDetails/Sections/WalkThroughSection";
+import AmenitiesSection from "./ProjectDetails/Sections/AmenitiesSection";
+import FloorPlanSection from "./ProjectDetails/Sections/FloorPlanSection";
+import GallerySection from "./ProjectDetails/Sections/GallerySection";
+import LocationSection from "./ProjectDetails/Sections/LocationSection";
+import GetInTouchSection from "./ProjectDetails/Sections/GetINTouchSection";
+import FaqSection from "./ProjectDetails/Sections/FaqSection";
+import AboutSection from "./ProjectDetails/Sections/AboutSection";
+import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
+import ContextModalProvider from "../Store/Context/ContentModalContext";
 import { useLoaderData } from "react-router-dom";
 
 const ProjectDetails = () => {
