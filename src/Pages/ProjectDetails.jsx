@@ -10,7 +10,7 @@ import AmenitiesSection from "./ProjectDetails/Sections/AmenitiesSection";
 import FloorPlanSection from "./ProjectDetails/Sections/FloorPlanSection";
 import GallerySection from "./ProjectDetails/Sections/GallerySection";
 import LocationSection from "./ProjectDetails/Sections/LocationSection";
-import GetInTouchSection from "./ProjectDetails/Sections/GetINTouchSection";
+import GetInTouchSection from "./ProjectDetails/Sections/GetInTouchSection";
 import FaqSection from "./ProjectDetails/Sections/FaqSection";
 import AboutSection from "./ProjectDetails/Sections/AboutSection";
 import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
