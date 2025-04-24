@@ -3,7 +3,7 @@ import CityListing from "../Pages/CityListing/CityListing";
 import BuilderListing from "../Pages/BuilderListing/BuilderListing";
 import ProjectListing from "../Pages/ProjectListing/ProjectListing";
 import ProjectDetails from "../Pages/ProjectDetails/ProjectDetails";
-import HomePage from "../Pages/Homepage/Homepage";
+import Home from "../Pages/Homepage/Homepage";
 import { projectLoader } from "../loaders/projectLoader";
 import { Suspense, lazy } from "react";
 import Root from "../Components/Shared/OtherPages/Root";
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
       children: [
         {
           index:true,
-          element: <HomePage/>,
+          element: <Home/>,
         },
         {
           path: "city/:cityName",

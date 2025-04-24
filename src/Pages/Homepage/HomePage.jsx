@@ -3,11 +3,9 @@ import Banner from "./Sections/Banner";
 import SectionOne from "./Sections/SectionOne";
 import SectionThree from "./Sections/SectionThree";
 import SectionFour from "./Sections/SectionFour";
-import ProjectPreviewCard from "../../Components/ProjectPreviewCard";
-import Responsive from "./Sections/ProjectPreviewSection";
 import ProjectPreviewSection from "./Sections/ProjectPreviewSection";
 
-const HomePage = () => {
+const Home = () => {
   return (
     <>
       <Banner/>
@@ -20,4 +18,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Home;
