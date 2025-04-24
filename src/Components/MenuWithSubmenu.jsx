@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function MenuWithSubMenu({
   title,
   list,
@@ -78,12 +80,12 @@ export default function MenuWithSubMenu({
                 }
             return (
               <li key={i}>
-                <a
-                  href={href}
+                <Link
+                  to={href}
                   className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                 >
                   {val}
-                </a>
+                </Link>
               </li>
             );
           })}
