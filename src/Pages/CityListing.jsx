@@ -3,6 +3,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
 import SectionWrapper from "../Components/UI/ProjectDetails/SectionWrapper";
 import ProjectPreviewCard from "../Components/ProjectPreviewCard";
+import Button from "../Components/UI/ProjectDetails/Button";
 
 const images = {
   mobile: "https://www.starestate.com/assets/images/banner-all-projects-m.jpg",
@@ -51,9 +52,18 @@ const CityListing = () => {
             apartments in Kolkata.
           </p>
         </div>
+        <div className="flex gap-x-[10px] mt-[9px] justify-center font-semibold mb-[2rem]">
+          <Button
+            type="button"
+            className={"bg-[#2f2f2f] text-white"}
+          >
+            READ MORE
+          </Button>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        {data.map((item) => (
-          <ProjectPreviewCard item = {item}/>))}     
+          {data.map((item) => (
+            <ProjectPreviewCard item={item} />
+          ))}
         </div>
       </SectionWrapper>
       <CompanyInfoSection />
