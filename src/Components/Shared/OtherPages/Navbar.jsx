@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import ToogleMenu from "../../ToogleMenu";
 import Wrapper from "../../UI/OtherPages/Wrapper";
 import Megamenu from "../../Megamenu";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 
 export const list3 = [
@@ -64,8 +64,8 @@ export default function Navbar({data}) {
   return (
     <Wrapper>
       <div className="flex items-center space-x-8">
-        <div id="logo" className="text-xl font-bold">
-          LOGO
+        <div id="logo" className="text-xl font-bold hover:cursor-pointer">
+          <Link to= "/">LOGO</Link>
         </div>
         <div
           id="navlinks"
