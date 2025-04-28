@@ -4,7 +4,7 @@ import {list3,list4 } from "./Shared/OtherPages/Navbar";
 import { FaFacebook, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
 
 export default function Togglemenu({data}) {
-  const {states,projectBy} = data;
+  const {cityLocation,projectBy} = data;
   const [openIndex, setOpenIndex] = useState(null);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   // const location = useLocation();
@@ -62,7 +62,7 @@ export default function Togglemenu({data}) {
             </a>
           </li>
 
-          <MenuWithSubMenu title = {"City"} list={states} index={0} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen}  />
+          <MenuWithSubMenu title = {"City"} list={cityLocation} index={0} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen}  />
           <MenuWithSubMenu title = {"Builder"} list={projectBy} index={1} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen} />
           <MenuWithSubMenu  title = {"Projects"} list={list3} index={2} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen} />
           <MenuWithSubMenu title = {"Media"} list={list4} index={3} openIndex={openIndex} handleToggle={handleToggle} isLargeScreen={isLargeScreen}/>

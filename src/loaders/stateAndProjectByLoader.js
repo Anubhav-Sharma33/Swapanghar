@@ -1,9 +1,9 @@
 import sanityClient from "../sanityClient";
 
-export async function stateAndProjectByLoader() {
+export async function cityLocationAndProjectByLoader() {
   const query = `
 {
-  "states": *[_type == "state"]{ name },
+  "cityLocation": *[_type == "cityLocation"]{ name },
   "projectBy": *[_type == "projectBy"]{ builderName }
 }
 `;

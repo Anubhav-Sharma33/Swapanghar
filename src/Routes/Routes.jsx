@@ -5,7 +5,7 @@ import ProjectDetails from "../Pages/ProjectDetails";
 import { projectLoader } from "../loaders/projectLoader";
 import { Suspense, lazy } from "react";
 import Root from "../Components/Shared/OtherPages/Root";
-import { stateAndProjectByLoader } from "../loaders/stateAndProjectByLoader";
+import { cityLocationAndProjectByLoader } from "../loaders/stateAndProjectByLoader";
 import { cityLoader } from "../loaders/cityLoader";
 import { builderLoader } from "../loaders/builderloader";
 import { projectListingLoader } from "../loaders/projectsLoader";
@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
     {
       path: "/",
       element: <Root/>,
-      loader: stateAndProjectByLoader,
+      loader: cityLocationAndProjectByLoader,
       children: [
         {
           index:true,

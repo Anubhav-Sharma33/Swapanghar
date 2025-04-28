@@ -25,7 +25,9 @@ export const list4 = [
 ];
 
 export default function Navbar({data}) {
-  const {states,projectBy} = data;
+  const {cityLocation,projectBy} = data;
+  console.log(data);
+  // console.log(); Add a log statement to see what is the structur of data
   const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -79,7 +81,7 @@ export default function Navbar({data}) {
               <span>City</span>
               <i className="fa fa-caret-down ml-1"></i>
             </a>
-            <Megamenu title={"City"} list={states} />
+            <Megamenu title={"City"} list={cityLocation} />
           </div>
           <div className="group">
             <a
