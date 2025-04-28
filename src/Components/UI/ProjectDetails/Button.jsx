@@ -7,7 +7,7 @@ const Button = ({className,onClick,children,type}) => {
         )
     }else{
         return(
-            <a className={`text-center px-[20px] py-[9px] text-[13px]  min-w-[120px] hover:cursor-pointer font-semibold ${className}`} onClick={onClick}>{children}</a>
+            <a className={`text-center px-[20px] py-[9px] text-[14px]  min-w-[120px] hover:cursor-pointer font-semibold ${className}`} onClick={onClick}>{children}</a>
         )
     }
 }

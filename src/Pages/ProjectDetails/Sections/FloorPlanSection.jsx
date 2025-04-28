@@ -35,7 +35,7 @@ const FloorPlanSection = ({floorPlan,floorPlansContent}) => {
           </div>
         </div>
         <div className="w-full">
-          <div className="flex flex-col gap-y-[20px] sm:flex-row sm:gap-y-0 justify-center flex-wrap">
+          <div className="flex flex-col gap-y-[20px] sm:flex-row sm:gap-y-[20px] justify-center flex-wrap">
             {floorPlan.map((item, index) => {
               return (
                 <FloorPlanSubSection item = {item}

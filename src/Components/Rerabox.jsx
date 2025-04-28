@@ -34,7 +34,7 @@ const ReraBox = ({parent,project_details}) => {
             className="break-all whitespace-normal text-[.825rem]"
           >
             <i className="fa fa-link text-[10px] sm:text-xs md:text-sm"></i>{" "}
-            https://rera.karnataka.gov.in
+            {project_details.rera_link}
           </a>
         </div>
         <div className="flex justify-center flex-grow-0 flex-shrink-0">
