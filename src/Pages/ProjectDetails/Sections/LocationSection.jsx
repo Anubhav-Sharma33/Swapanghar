@@ -5,44 +5,54 @@ import SectionWrapper from "../../../Components/UI/ProjectDetails/SectionWrapper
 import { ContentModalContext } from "../../../Store/Context/ContentModalContext";
 import { useContext } from "react";
 import { urlFor } from "../../../utils/imageUrl";
+import { FormModelContext } from "../../../Store/Context/FormModalContext";
 
-const LocationSection = ({location}) => {
+const LocationSection = ({ location }) => {
   const { openModal } = useContext(ContentModalContext);
-  const content = {heading: "Location", Content:location.data1[0].LocationContent}
+  const modal = useContext(FormModelContext);
+  // console.log(location);
+  const content = { heading: "Location", Content: location.data1 };
   const locationAddress = [
     {
-      title:"Address",
-      location :location.projectAddress,
+      title: "Address",
+      location: location.projectAddress,
     },
     {
-      title:"City",
-      location :location.cityLocation.name
+      title: "City",
+      location: location.cityLocation.name,
     },
     {
-      title:"State",
-      location :location.state.name
+      title: "State",
+      location: location.state.name,
     },
     {
-      title:"Country",
-      location : "India"
+      title: "Country",
+      location: "India",
     },
-  ]
+  ];
   return (
-    <SectionWrapper className="pb-[2.5rem]" id= "LocationSection">
+    <SectionWrapper className="pb-[2.5rem]" id="LocationSection">
       <div className="flex flex-col items-center mb-[20px]">
         <h1 className="text-[#2f2f2f] text-[1.75rem] sm:text-[calc(1.33rem+0.9vw)] xl:text-[2rem] font-bold mb-[1rem]">
           Location
         </h1>
-        <p className="text-center font-normal mb-[1rem] text-[1rem]">
-          {location.data1[0].LocationContent} 
-          {/* Make map */}
-        </p>
+        {location.data1.map((item) => {
+          return (
+            <p className="text-center font-normal mb-[1rem] text-[1rem] text-[#2f2f2f] truncate-2-lines">
+              {item.Content}
+            </p>
+          );
+        })}
         <div className="flex gap-x-[10px] mt-[1rem] justify-center">
-        <Button className={"bg-[#2f2f2f] text-white"} type="button" onClick={() => {
+          <Button
+            className={"bg-[#2f2f2f] text-white"}
+            type="button"
+            onClick={() => {
               openModal(content);
-            }}>
-        READ MORE
-        </Button>
+            }}
+          >
+            READ MORE
+          </Button>
         </div>
       </div>
       <div className="flex flex-col items-center gap-y-[20px] lg:flex-row-reverse lg:items-start">
@@ -68,10 +78,10 @@ const LocationSection = ({location}) => {
           <div className="w-full">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-[10px]">
               {location.data.map((cur) => {
-                let {image,title} = cur.LocationAdvantagesId;
-                let distance = cur.proximity+cur.unit;
+                let { image, title } = cur.LocationAdvantagesId;
+                let distance = cur.proximity + cur.unit;
                 return (
-                   <LocationAdvantage
+                  <LocationAdvantage
                     image={image}
                     title={title}
                     distance={distance}
@@ -95,7 +105,16 @@ const LocationSection = ({location}) => {
               })}
             </div>
             <div className="mt-[2.5rem] flex">
-             <Button className={"bg-gradient-to-br from-[#eff0f3] to-[#ffffff] text-[#2f2f2f]  shadow-[3px_3px_3px_#e8e6e6,-3px_-3px_3px_#fff] "}><i className="fa fa-map-marker-alt mr-[5px]"/> VIEW ON MAP</Button>
+              <Button
+                className={
+                  "bg-gradient-to-br from-[#eff0f3] to-[#ffffff] text-[#2f2f2f]  shadow-[3px_3px_3px_#e8e6e6,-3px_-3px_3px_#fff] "
+                }
+                onClick={() => {
+                  modal.openModal();
+                }}
+              >
+                <i className="fa fa-map-marker-alt mr-[5px]" /> VIEW ON MAP
+              </Button>
             </div>
           </div>
         </div>

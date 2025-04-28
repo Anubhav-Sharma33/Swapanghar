@@ -3,7 +3,7 @@ const Logo = (props) => {
       <div className = {`py-1 flex`}>
         <a
           className="h-auto"
-          href="https://www.starestate.com/builder/prestige-group"
+          href="/"
         >
           <img
             className="h-10 w-auto lg:h-12.5"

@@ -19,10 +19,10 @@ import { useLoaderData } from "react-router-dom";
 
 const ProjectDetails = () => {
   const data = useLoaderData();
-  const {faqs,amenities,floorPlan,floorPlansContent,banners,brochureWalkthrough,location,projectGallery,project_details} = data;
-
+  console.log(data);
+  const {faqs,amenities,floorPlan,floorPlansContent,banners,brochureWalkthrough,location,projectGallery,project_details,aboutUs,quickDetails} = data;
   useEffect(() => {
-    window.scrollTo(0, 0); // or use { top: 0, behavior: "smooth" } if needed
+    window.scrollTo(0, 0); 
   }, []);
 
 
@@ -30,9 +30,9 @@ const ProjectDetails = () => {
     <FormModalContext>
       <Header project_details= {project_details}/>
       <ContextModalProvider>
-        <BannerSection banners = {banners}/>
-        <FormSection />
-        <AboutSection />
+        <BannerSection banners = {banners} project_details= {project_details} quickDetails={quickDetails} location={location}/>
+        <FormSection project_details= {project_details} quickDetails={quickDetails} location = {location}/>
+        <AboutSection aboutUs = {aboutUs}/>
         <WalkThroughSection brochureWalkthrough = {brochureWalkthrough} />
         <AmenitiesSection amenities = {amenities}/>  
         <FloorPlanSection floorPlan = {floorPlan} floorPlansContent = {floorPlansContent} /> 

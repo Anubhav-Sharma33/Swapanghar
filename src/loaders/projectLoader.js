@@ -16,6 +16,12 @@ export async function projectLoader({ params }) {
         amenities {
           ...,
           data[]{ ..., amenity-> }
+        },
+        project_details {
+          ...,
+          projectRef->,
+          projectBy->,
+          projectPrice->
         }
       }
     `;

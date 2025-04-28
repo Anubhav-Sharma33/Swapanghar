@@ -1,8 +1,8 @@
 
 import { useState, useEffect } from "react";
+import { urlFor } from "../utils/imageUrl";
 
-const ReraBox = (props) => {
-  const parent = props.parent;
+const ReraBox = ({parent,project_details}) => {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const ReraBox = (props) => {
       >
         <div className="flex flex-col justify-center">
           <p className="break-all whitespace-normal text-[.875rem]">
-          RERA No: WBRERA/P/SOU/2023/000015
+          {project_details.rera_no}
           </p>
           <a
             href="https://rera.karnataka.gov.in/"
@@ -39,7 +39,7 @@ const ReraBox = (props) => {
         </div>
         <div className="flex justify-center flex-grow-0 flex-shrink-0">
           <img
-            src="https://sar.ecis.in/api/starestate/star_estate/projects/2025-02-19_12-39-13_Untitled.png"
+            src={urlFor(project_details.rera_qr).url()}
             alt="QR Code"
             className="h-[3.18rem] w-auto"
           />

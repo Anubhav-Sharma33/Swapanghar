@@ -1,10 +1,11 @@
 import Navbar from "./NavBar";
 
 
-const Header = () => {
+const Header = ({project_details}) => {
+  const {project_logo} = project_details
   return (
     <header className='sticky top-0 z-30'>
-      <Navbar/>
+      <Navbar projectLogo = {project_logo}/>
     </header>
   )
 }

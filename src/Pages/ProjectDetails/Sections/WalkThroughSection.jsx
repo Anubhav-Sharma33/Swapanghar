@@ -7,9 +7,10 @@ import { urlFor } from "../../../utils/imageUrl";
 
 const WalkThroughSection = ({ brochureWalkthrough }) => {
   const { openModal } = useContext(FormModelContext);
+  // console.log(brochureWalkthrough);
   const { openModal: OpenContentModal } = useContext(ContentModalContext);
   const imageUrl = urlFor(brochureWalkthrough.sectionImage).url();
-  const content = {heading: "Walkthrough", Content:brochureWalkthrough.walkthroughItems[0].walkthrough}
+  const content = {heading: "Walkthrough", Content:brochureWalkthrough.walkthroughItems}
   return (
     <SectionWrapper className="pb-[2.5rem]">
       <div className="w-full flex justify-center flex-wrap text-white">
@@ -29,9 +30,13 @@ const WalkThroughSection = ({ brochureWalkthrough }) => {
                   <h1 className="text-[1.75rem] sm:text-[calc(1.33rem+0.9vw)] xl:text-[2rem] font-bold mb-[1rem]">
                     Walkthrough
                   </h1>
-                  <p className="text-center font-normal mb-[1rem] text-[1rem]">
-                    {brochureWalkthrough.walkthroughItems[0].walkthrough}
+                  {brochureWalkthrough.walkthroughItems.map((item)=>{
+                    return (
+                      <p className="text-center font-normal mb-[1rem] text-[1rem] truncate-2-lines">
+                    {item.Content}
                   </p>
+                    )
+                  })}
                   <div className="flex gap-x-[10px] mt-[1rem] justify-center">
                     <Button
                       className={"bg-white text-black"}

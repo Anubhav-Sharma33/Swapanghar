@@ -1,17 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { useContext } from 'react'
+import { FormModelContext } from '../../../Store/Context/FormModalContext'
 
 const LowerNavBar = () => {
+  const modal = useContext(FormModelContext);
   return (
     <div className="sticky bottom-0 left-0 right-0 z-30 bg-[linear-gradient(rgb(229,247,163),rgb(160,164,56),rgb(136,144,53))] shadow-[0_0_10px_rgba(0,0,0,0.15)] flex md:hidden text-white  text-center text-[1rem] font-normal">
-        <a className="flex-1 px-[5px] py-[8px] border border-[rgba(0,0,0,0.15)] border-l-0">
+        <a className="flex-1 px-[5px] py-[8px] border border-[rgba(0,0,0,0.15)] border-l-0" href="tel:+917814457626">
             <strong>
             <FontAwesomeIcon icon={faPhone} className="mr-2" />Call
             </strong>
             
         </a>
-        <a className="flex-1 px-[5px] py-[8px] border border-[rgba(0,0,0,0.15)] border-l-0">
+        <a className="flex-1 px-[5px] py-[8px] border border-[rgba(0,0,0,0.15)] border-l-0" onClick={(e)=>{
+          modal.openModal();
+        }}>
             <strong>
             <FontAwesomeIcon icon={faEnvelope} className="mr-2" />Enquire
             </strong>
