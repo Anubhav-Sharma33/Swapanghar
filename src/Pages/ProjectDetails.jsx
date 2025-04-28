@@ -19,7 +19,7 @@ import { useLoaderData } from "react-router-dom";
 
 const ProjectDetails = () => {
   const data = useLoaderData();
-  console.log(data);
+  // console.log(data);
   const {faqs,amenities,floorPlan,floorPlansContent,banners,brochureWalkthrough,location,projectGallery,project_details,aboutUs,quickDetails} = data;
   useEffect(() => {
     window.scrollTo(0, 0); 

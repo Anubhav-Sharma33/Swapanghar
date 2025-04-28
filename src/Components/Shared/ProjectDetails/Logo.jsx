@@ -1,15 +1,17 @@
+import { Link } from "react-router-dom";
+
 const Logo = (props) => {
     return (
       <div className = {`py-1 flex`}>
-        <a
+        <Link
           className="h-auto"
-          href="/"
+          to="/"
         >
           <img
             className="h-10 w-auto lg:h-12.5"
             src={props.src}
           />
-        </a>
+        </Link>
       </div>
     );
   };
