@@ -56,7 +56,7 @@ const Hero = ({ project_details, quickDetails, location, parent }) => {
               : "hidden"
           }`}
         >
-          <Button className="flex items-center gap-x-[10px]">
+          <Button className="flex items-center gap-x-[10px]" href="https://wa.me/917814457626">
             <span>
               <strong>Get details on</strong>{" "}
             </span>

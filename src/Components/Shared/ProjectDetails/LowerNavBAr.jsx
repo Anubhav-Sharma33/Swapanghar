@@ -22,7 +22,7 @@ const LowerNavBar = () => {
             </strong>
             
         </a>
-        <a className="flex-1 px-[5px] py-[8px] border border-[rgba(0,0,0,0.15)] border-l-0">
+        <a className="flex-1 px-[5px] py-[8px] border border-[rgba(0,0,0,0.15)] border-l-0" href="https://wa.me/917814457626" target="_blank">
             <span><strong>Get Details on</strong></span>
             <FontAwesomeIcon icon={faWhatsapp} className="ml-2" />
         </a>
