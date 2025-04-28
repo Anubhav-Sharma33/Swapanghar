@@ -20,7 +20,7 @@ const Hero = ({ project_details, quickDetails, location, parent }) => {
           parent == "Banner" ? "" : "items-center"
         }`}
       >
-        <div className="mb-[20px]">
+        <div className={`${parent == "Banner" ? "mb-[20px] self-start" : "mb-[20px]"}`}>
           <h1
             className={`${
               parent == "Banner"
