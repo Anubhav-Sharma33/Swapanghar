@@ -10,8 +10,11 @@ import { ContentModalContext } from "../Store/Context/ContentModalContext";
 
 const CityListing = () => {
   const data = useLoaderData();
-  const {openModal} = useContext(ContentModalContext);
-  const content = {heading : "City Details", Content: data.cityDetails.moreData};
+  const { openModal } = useContext(ContentModalContext);
+  const content = {
+    heading: "City Details",
+    Content: data.cityDetails.moreData,
+  };
   const [images, setImages] = useState(data.cityDetails.cityImages);
   const { cityName } = useParams();
   const city = deslugify(cityName);
@@ -38,8 +41,32 @@ const CityListing = () => {
       <div className="w-full">
         <img src={url} className="w-full h-auto object-cover" />
       </div>
+      <SectionWrapper>
+        <div className="w-full">
+          <ol
+            className="text-[14px] mb-0 p-[12px_1rem] rounded-none flex flex-wrap items-center gap-x-[7px]"
+            style={{
+              background: "linear-gradient(to bottom right, #eff0f3, #ffffff)",
+              boxShadow: "3px 3px 3px #e8e6e6, -3px -3px 3px #ffffff",
+            }}
+          >
+            <li className="flex items-center gap-x-2">
+              <a href="/" className="text-primary hover:underline">
+                Home
+              </a>
+              <span className="text-gray-400">/</span>
+            </li>
+            <li className="flex items-center gap-x-2">
+              <a href="#" className="text-primary hover:underline">
+                Projects
+              </a>
+              <span className="text-gray-400">/</span>
+            </li>
+            <li className="text-gray-700">{city}</li>
+          </ol>
+        </div>
+      </SectionWrapper>
       <SectionWrapper className="pb-[2.5rem]">
-        <div>Bar</div>
         <div className="flex justify-center mb-[20px] text-[#525252]">
           <h1 className="text-[1.75rem] sm:text-[calc(1.33rem+0.9vw)] xl:text-[2rem] font-bold">
             Projects in {city}
@@ -52,9 +79,13 @@ const CityListing = () => {
         </div>
         {data.cityDetails.moreData.length != 0 && (
           <div className="flex gap-x-[10px] mt-[9px] justify-center font-semibold mb-[2rem]">
-            <Button type="button" className={"bg-[#2f2f2f] text-white"} onClick={()=>{
-              openModal(content)
-            }}>
+            <Button
+              type="button"
+              className={"bg-[#2f2f2f] text-white"}
+              onClick={() => {
+                openModal(content);
+              }}
+            >
               READ MORE
             </Button>
           </div>
