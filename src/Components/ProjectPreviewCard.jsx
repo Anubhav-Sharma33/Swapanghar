@@ -6,7 +6,7 @@ const ProjectPreviewCard = ({item}) => {
   // console.log(item)
   return (
     <div className="px-[10px] py-[10px]">
-      <Link className="w-full" to={`/${item.project_details.slugURL.current}`}>
+      <Link className="w-full" to={`/${item.project_details.slugURL.current}`} target="_blank">
         <div className="relative w-full">
           <div
             className={`absolute top-0 right-0 flex items-center justify-between px-2 py-1  gap-x-2`}

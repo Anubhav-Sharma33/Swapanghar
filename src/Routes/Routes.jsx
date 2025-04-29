@@ -1,4 +1,4 @@
-import { createBrowserRouter,Outlet} from "react-router-dom";
+import { createBrowserRouter, Outlet } from "react-router-dom";
 import BuilderListing from "../Pages/BuilderListing";
 import ProjectListing from "../Pages/ProjectListing";
 import ProjectDetails from "../Pages/ProjectDetails";
@@ -11,47 +11,59 @@ import { builderLoader } from "../loaders/builderloader";
 import { projectListingLoader } from "../loaders/projectsLoader";
 import Home from "../Pages/Homepage";
 import CityListing from "../Pages/CityListing";
+import ProjectsPage from "../Pages/ProjectsPage";
+import { projects } from "../loaders/projects";
 
 export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Root/>,
-      loader: cityLocationAndProjectByLoader,
-      children: [
-        {
-          index:true,
-          element: <Home/>,
-        },
-        {
-          path: "city/:cityName",
-          element : <CityListing/>,
-          loader:cityLoader
-        },
-        {
-          path: "builder/:builderName",
-          element :<BuilderListing/>,
-          loader:builderLoader,
-        },
-        {
-          path:"projects/:projectType",
-          element:<ProjectListing/>,
-          loader:projectListingLoader
-        },
-      ],
-    },
-    {
-      path: ":slug",
-      element: (
-        <Suspense fallback={<div>Loading project...</div>}>
-          <Outlet />
-        </Suspense>
-      ),
-      children: [
-        {
-          index: true,
-          loader: projectLoader,
-          element: <ProjectDetails />,
-        },
-      ],
-    } 
-  ]);
+  {
+    path: "/",
+    element: <Root />,
+    loader: cityLocationAndProjectByLoader,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "city/:cityName",
+        element: <CityListing />,
+        loader: cityLoader,
+      },
+      {
+        path: "builder/:builderName",
+        element: <BuilderListing />,
+        loader: builderLoader,
+      },
+      {
+        path: "projects",
+        children: [
+          {
+            index: true,
+            element: <ProjectsPage/>,
+            loader:projects
+          },
+          {
+            path: ":projectType",
+            element: <ProjectListing />, 
+            loader: projectListingLoader,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: ":slug",
+    element: (
+      <Suspense fallback={<div>Loading project...</div>}>
+        <Outlet />
+      </Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        loader: projectLoader,
+        element: <ProjectDetails />,
+      },
+    ],
+  },
+]);

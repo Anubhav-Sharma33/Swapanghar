@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import SectionWrapper from "../Components/UI/ProjectDetails/SectionWrapper";
 import ProjectPreviewCard from "../Components/ProjectPreviewCard";
 import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
 import Button from "../Components/UI/ProjectDetails/Button";
 import { deslugify } from "../utils/slug";
+import { ContentModalContext } from "../Store/Context/ContentModalContext";
+import { urlFor } from "../utils/imageUrl";
 
 const images = {
   mobile: "https://www.starestate.com/assets/images/banner-all-projects-m.jpg",
@@ -13,19 +15,25 @@ const images = {
 
 const BuilderListing = () => {
   const data = useLoaderData();
+  const { openModal } = useContext(ContentModalContext);
+  const content = {
+    heading: "City Details",
+    Content: data.builderDetails.moreData,
+  };
+  const [images, setImages] = useState(data.builderDetails.builderImages);
   const { builderName } = useParams();
   const builder = deslugify(builderName);
   // console.log(builderName);
   console.log(data);
-  const [url, setUrl] = useState(images.desktop);
+  const [url, setUrl] = useState(urlFor(images.desktopImage).url());
 
   useEffect(() => {
     function changeUrl() {
       const width = window.innerWidth;
       if (width < 540) {
-        setUrl(images.mobile);
+        setUrl(urlFor(images.mobileImage).url());
       } else {
-        setUrl(images.desktop);
+        setUrl(urlFor(images.desktopImage).url());
       }
     }
     changeUrl();
@@ -40,32 +48,32 @@ const BuilderListing = () => {
         <img src={url} className="w-full h-auto object-cover" />
       </div>
       <SectionWrapper className="pb-[2.5rem]">
+      <div>bar</div>
         <div className="flex justify-center mb-[20px] text-[#525252]">
           <h1 className="text-[1.75rem] sm:text-[calc(1.33rem+0.9vw)] xl:text-[2rem] font-bold">
             {builder}
           </h1>
         </div>
         <div className="flex flex-col text-[1rem] font-normal text-[#525252]">
-          <p className="text-center mb-[1rem]">
-            Noida, the city with sky-scrapping residential buildings and eminent
-            offices, lures premium retail brands. The city is changing its
-            retail shopping destination to match the demand of premium shoppers
-            near home. Ace Group renders commercial and residential properties
-            in Sector 153, Noida, extending cityscape views and greenery. The
-            presence of commercial activities and mavens with offices here
-            prefer to reside next to the same.
-          </p>
+          {data.builderDetails.builderDetails.map((item) => {
+            return <p className="text-center mb-[1rem]">{item.detail}</p>;
+          })}
         </div>
-        <div className="flex gap-x-[10px] mt-[9px] justify-center font-semibold mb-[2rem]">
-          <Button
-            type="button"
-            className={"bg-[#2f2f2f] text-white"}
-          >
-            READ MORE
-          </Button>
-        </div>
+        {data.builderDetails.moreData.length != 0 && (
+          <div className="flex gap-x-[10px] mt-[9px] justify-center font-semibold mb-[2rem]">
+            <Button
+              type="button"
+              className={"bg-[#2f2f2f] text-white"}
+              onClick={() => {
+                openModal(content);
+              }}
+            >
+              READ MORE
+            </Button>
+          </div>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {data.map((item) => (
+          {data.projects.map((item) => (
             <ProjectPreviewCard item={item} />
           ))}
         </div>

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import sanityClient from "../sanityClient";
 
 const fetchProjects = async () => {
-  const query = `*[_type == "projectListing"]{
+  const query = `*[_type == "projectListing" && project_details.isFeatured == true]{
     _id,
     project_details {
       projectRef->,

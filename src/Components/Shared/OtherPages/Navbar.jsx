@@ -65,7 +65,7 @@ export default function Navbar({data}) {
 
   return (
     <Wrapper>
-      <div className="flex items-center space-x-8">
+      <div className="flex items-center space-x-8 h-[57px]">
         <div id="logo" className="text-xl font-bold hover:cursor-pointer">
           <Link to= "/">LOGO</Link>
         </div>

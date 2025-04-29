@@ -42,7 +42,7 @@ const Banner = () => {
       </div>
 
       {/* Content Container positioned 30% from the top */}
-      <div className="absolute top-[25%] left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center text-center w-full ">
+      <div className="absolute top-[25%] left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center text-center w-full ">
         <div
           id="main-container"
           className="w-full flex justify-center items-center"

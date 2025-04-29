@@ -9,7 +9,7 @@ export default function Root(){
     
     return(
         <>
-        <header>
+        <header className='sticky top-0 z-30'>
             <Navbar data = {data}/>
         </header>
         <main>

@@ -14,7 +14,6 @@ import GetInTouchSection from "./ProjectDetails/Sections/GetInTouchSection";
 import FaqSection from "./ProjectDetails/Sections/FaqSection";
 import AboutSection from "./ProjectDetails/Sections/AboutSection";
 import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
-import ContextModalProvider from "../Store/Context/ContentModalContext";
 import { useLoaderData } from "react-router-dom";
 
 const ProjectDetails = () => {
@@ -29,7 +28,6 @@ const ProjectDetails = () => {
   return (
     <FormModalContext>
       <Header project_details= {project_details}/>
-      <ContextModalProvider>
         <BannerSection banners = {banners} project_details= {project_details} quickDetails={quickDetails} location={location}/>
         <FormSection project_details= {project_details} quickDetails={quickDetails} location = {location}/>
         <AboutSection aboutUs = {aboutUs}/>
@@ -41,7 +39,6 @@ const ProjectDetails = () => {
         <GetInTouchSection />
         <FaqSection faqs = {faqs}/>
         <CompanyInfoSection />
-      </ContextModalProvider>
       <Footer />
       <LowerNavBar />
     </FormModalContext>
