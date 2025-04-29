@@ -7,8 +7,10 @@ import Button from "../Components/UI/ProjectDetails/Button";
 import { deslugify } from "../utils/slug";
 import { urlFor } from "../utils/imageUrl";
 import { ContentModalContext } from "../Store/Context/ContentModalContext";
+import onScroll from "../hooks/scrollToTop";
 
 const CityListing = () => {
+  onScroll();
   const data = useLoaderData();
   const { openModal } = useContext(ContentModalContext);
   const content = {

@@ -7,6 +7,7 @@ import Button from "../Components/UI/ProjectDetails/Button";
 import { deslugify } from "../utils/slug";
 import { ContentModalContext } from "../Store/Context/ContentModalContext";
 import { urlFor } from "../utils/imageUrl";
+import onScroll from "../hooks/scrollToTop";
 
 const images = {
   mobile: "https://www.starestate.com/assets/images/banner-all-projects-m.jpg",
@@ -14,6 +15,7 @@ const images = {
 };
 
 const BuilderListing = () => {
+  onScroll();
   const data = useLoaderData();
   const { openModal } = useContext(ContentModalContext);
   const content = {

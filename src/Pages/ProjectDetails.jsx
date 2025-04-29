@@ -15,14 +15,13 @@ import FaqSection from "./ProjectDetails/Sections/FaqSection";
 import AboutSection from "./ProjectDetails/Sections/AboutSection";
 import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
 import { useLoaderData } from "react-router-dom";
+import onScroll from "../hooks/scrollToTop";
 
 const ProjectDetails = () => {
   const data = useLoaderData();
   // console.log(data);
   const {faqs,amenities,floorPlan,floorPlansContent,banners,brochureWalkthrough,location,projectGallery,project_details,aboutUs,quickDetails} = data;
-  useEffect(() => {
-    window.scrollTo(0, 0); 
-  }, []);
+  onScroll()
 
 
   return (

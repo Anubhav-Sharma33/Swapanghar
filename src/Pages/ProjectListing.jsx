@@ -6,6 +6,7 @@ import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
 import Button from "../Components/UI/ProjectDetails/Button";
 import { deslugify } from "../utils/slug";
 import { ContentModalContext } from "../Store/Context/ContentModalContext";
+import onScroll from "../hooks/scrollToTop";
 
 const images = {
   mobile: "https://www.starestate.com/assets/images/banner-all-projects-m.jpg",
@@ -13,14 +14,15 @@ const images = {
 };
 
 const ProjectListing = () => {
+  onScroll()
   const data = useLoaderData();
   const projectData = useParams();
   const projectType = deslugify(projectData.projectType);
   const {openModal} = useContext(ContentModalContext);
   const content = {
     heading: projectType,
-    Content: data.propertyTypeDetails.moreData,
-  };
+    Content: projectType === "New Launches" ? "" : data.propertyTypeDetails.moreData,
+  };  
   // console.log(projectType);
   console.log(data);
   const [url, setUrl] = useState(images.desktop);
@@ -81,7 +83,7 @@ const ProjectListing = () => {
             return <p className="text-center mb-[1rem]">{item.detail}</p>;
           })}
         </div>)}
-        {(projectType != "New Launches" && data.propertyTypeDetails.moreData.length != 0) && (
+        {(projectType != "New Launches" && data.propertyTypeDetails.moreData && data.propertyTypeDetails.moreData.length !=0 ) && (
           <div className="flex gap-x-[10px] mt-[9px] justify-center font-semibold mb-[2rem]">
             <Button
               type="button"
