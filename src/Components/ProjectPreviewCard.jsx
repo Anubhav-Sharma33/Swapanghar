@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { urlFor } from "../utils/imageUrl";
 
 const ProjectPreviewCard = ({item}) => {
-  console.log(item)
+  // console.log(item)
   return (
     <div className="px-[10px] py-[10px]">
       <Link className="w-full" to={`/${item.project_details.slugURL.current}`}>
@@ -40,15 +40,15 @@ const ProjectPreviewCard = ({item}) => {
         </div>
         <div className="pt-[15px] pb-[5px]">
           <div className="flex justify-between gap-x-[10px] items-center font-bold">
-            <h4 className="text-[1.125rem]">Godrej Blue</h4>
+            <h4 className="text-[1.125rem]">{item.project_details.projectRef.name}</h4>
             <h6 className="text-[13px] text-[#116d42]">Price on Request</h6>
           </div>
           <div className="text-[11px] uppercase flex flex-wrap gap-x-[1rem] gap-y-2 mt-[10px] pt-[10px] border-t border-dashed border-[rgba(0,0,0,0.1)]">
             <span className="flex gap-x-[4px] items-center">
-              <i className="fa fa-map-marker-alt"></i>BL Saha Road Kolkata
+              <i className="fa fa-map-marker-alt"></i>{item.location.projectAddress}
             </span>
             <span className="flex gap-x-[4px] items-center">
-              <i className="fa-brands fa-font-awesome"></i>new-launch
+              <i className="fa-brands fa-font-awesome"></i>{item.project_details.property_type}
             </span>
           </div>
         </div>
