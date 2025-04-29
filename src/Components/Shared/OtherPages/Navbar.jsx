@@ -26,7 +26,7 @@ export const list4 = [
 
 export default function Navbar({data}) {
   const {cityLocation,projectBy} = data;
-  console.log(data);
+  // console.log(data);
   // console.log(); Add a log statement to see what is the structur of data
   const location = useLocation();
 

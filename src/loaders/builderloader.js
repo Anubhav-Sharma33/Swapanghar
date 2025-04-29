@@ -1,8 +1,11 @@
 // loaders/builderLoader.js or builderLoader.ts
 import sanityClient from '../sanityClient';
+import { deslugify } from '../utils/slug';
 
 export async function builderLoader({ params }) {
-  const builder = params.builderName.toLowerCase(); // normalize input
+  // const builder = params.builderName.toLowerCase(); // normalize input
+  const builder = deslugify(params.builderName);
+  // console.log(builder);
 
   const query = `
     *[

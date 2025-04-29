@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { slugify } from "../utils/slug";
 
 export default function MenuWithSubMenu({
   title,
@@ -65,21 +66,26 @@ export default function MenuWithSubMenu({
           } scrollbar-hide`}
         >
           {list.map((cur, i) => {
-            let val = "/";
-              let href = "";
-              if(title === "Builder"){
-                val = cur.builderName
-                href = "/builder/"+cur.builderName.replace(/\s+/g, "").toLowerCase()
-                }
-                else if(title === "Projects"){
-                val = cur.projectType
-                href = "/projects/"+cur.projectType.replace(/\s+/g, "").toLowerCase()
-                }else if(title === "City"){
-                val = cur.name
-                href = "/city/"+cur.name.replace(/\s+/g, "").toLowerCase()
-                }else{
-                  val = cur.listType;
-                }
+            let val = "Default";
+            let href = "/";
+            let slug  = ""
+            if (title === "Builder") {
+              val = cur.builderName;
+              slug = slugify(cur.builderName);
+              href =
+                "/builder/" + slug;
+            } else if (title === "Projects") {
+              val = cur.projectType;
+              slug = slugify(cur.projectType);
+              href =
+                "/projects/" + slug;
+            } else if (title === "City") {
+              val = cur.name;
+              slug = slugify(cur.name);
+              href = "/city/" + slug
+            } else {
+              val = cur.listType;
+            }
             return (
               <li key={i}>
                 <Link

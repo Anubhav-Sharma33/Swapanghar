@@ -4,6 +4,7 @@ import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
 import SectionWrapper from "../Components/UI/ProjectDetails/SectionWrapper";
 import ProjectPreviewCard from "../Components/ProjectPreviewCard";
 import Button from "../Components/UI/ProjectDetails/Button";
+import { deslugify } from "../utils/slug";
 
 const images = {
   mobile: "https://www.starestate.com/assets/images/banner-all-projects-m.jpg",
@@ -13,7 +14,7 @@ const images = {
 const CityListing = () => {
   const data = useLoaderData();
   const { cityName } = useParams();
-  console.log(cityName);
+  const city = deslugify(cityName);
   console.log(data);
   const [url, setUrl] = useState(images.desktop);
 
@@ -40,7 +41,7 @@ const CityListing = () => {
       <SectionWrapper className="pb-[2.5rem]">
         <div className="flex justify-center mb-[20px] text-[#525252]">
           <h1 className="text-[1.75rem] sm:text-[calc(1.33rem+0.9vw)] xl:text-[2rem] font-bold">
-            Projects in {cityName}
+            Projects in {city}
           </h1>
         </div>
         <div className="flex flex-col text-[1rem] font-normal text-[#525252]">

@@ -14,20 +14,24 @@ export default function Megamenu(props) {
       <div>
         <ul className="grid grid-cols-4 gap-4 text-gray-700">
           {list.map((cur, index) => {
-            let val = "";
-            let href = "";
+            let val = "Default";
+            let href = "/";
+            let slug = ""
             if (title === "Builder") {
               val = cur.builderName;
+              slug = slugify(cur.builderName);
               href =
-                "/builder/" + cur.builderName.replace(/\s+/g, "").toLowerCase();
+                "/builder/" + slug;
             } else if (title === "Projects") {
               val = cur.projectType;
+              slug = slugify(cur.projectType);
               href =
                 "/projects/" +
-                cur.projectType.replace(/\s+/g, "").toLowerCase();
+                slug;
             } else if (title === "City") {
               val = cur.name;
-              href = "/city/" + cur.name.replace(/\s+/g, "").toLowerCase();
+              let slug = slugify(cur.name);
+              href = "/city/" + slug;
             }
             return (
               <Link to={href}>

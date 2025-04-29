@@ -1,67 +1,64 @@
 import sanityClient from '../sanityClient';
+import { deslugify } from '../utils/slug';
 
 export async function projectListingLoader({ params }) {
-  const { projectType } = params;
+  const projectType = deslugify(params.projectType); // Normalize input
 
-  try {
-    const query = `
-      *[_type == "projectListing" && lower(project_details.property_type) match lower($projectType)]{
+  const isNewLaunch = projectType === 'New Launches';
+
+  // Define query separately for better GROQ parsing
+  const query = isNewLaunch
+    ? `
+      *[
+        _type == "projectListing" &&
+        project_details.isNewLaunch == true
+      ]{
         _id,
         project_details {
           projectRef->{ projectName },
           projectBy->{ builderName },
           projectPrice->{ price },
           rera_no,
-          project_logo,
-          project_thumbnail,
-          property_type,
           slugURL
         },
         location {
-          state->,
-          cityLocation->,
-          projectAddress,
-          locationMap,
-          data[]{
-            proximity,
-            unit,
-            LocationAdvantagesId->
-          },
-          data1[]{
-            LocationContent
-          }
+          state->{ name },
+          cityLocation->{ name },
+          projectAddress
+        }
+      }
+    `
+    : `
+      *[
+        _type == "projectListing" &&
+        project_details.property_type == $projectType
+      ]{
+        _id,
+        project_details {
+          projectRef->{ projectName },
+          projectBy->{ builderName },
+          projectPrice->{ price },
+          rera_no,
+          slugURL
         },
-        amenities {
-          AmenityImage,
-          data[]{ amenity-> },
-          data1[]{ amenityContent }
-        },
-        floorPlan[]{
-          title,
-          areaRangeSqft,
-          areaRangeSqm,
-          image
-        },
-        projectGallery[]{
-          alt,
-          desktopImage,
-          mobileImage
-        },
-        banners[]{
-          desktop_image_url,
-          mobile_image_url,
-          tablet_image_url,
-          alt_tag_desktop,
-          alt_tag_mobile,
-          alt_tag_tablet
+        location {
+          state->{ name },
+          cityLocation->{ name },
+          projectAddress
         }
       }
     `;
 
-    const data = await sanityClient.fetch(query, { projectType });
+  try {
+    const data = await sanityClient.fetch(query, isNewLaunch ? {} : { projectType });
 
     return data;
-  } catch (err) {
-    throw new Response("Server Error", { status: 500 });
+  } catch (error) {
+    console.error('Error fetching project listings:', error);
+
+    throw new Response('Failed to load project listings', {
+      status: 500,
+      statusText: 'Internal Server Error',
+    });
   }
 }

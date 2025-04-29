@@ -4,6 +4,7 @@ import SectionWrapper from '../Components/UI/ProjectDetails/SectionWrapper';
 import ProjectPreviewCard from '../Components/ProjectPreviewCard';
 import CompanyInfoSection from './ProjectDetails/Sections/CompanyInfoSection';
 import Button from "../Components/UI/ProjectDetails/Button";
+import { deslugify } from '../utils/slug';
 
 const images = {
   mobile: "https://www.starestate.com/assets/images/banner-all-projects-m.jpg",
@@ -12,8 +13,9 @@ const images = {
 
 const ProjectListing = () => {
   const data = useLoaderData();
-  const { projectType } = useParams();
-  console.log(projectType);
+  const projectData = useParams();
+  const projectType = deslugify(projectData.projectType);
+  // console.log(projectType);
   console.log(data);
   const [url, setUrl] = useState(images.desktop);
 

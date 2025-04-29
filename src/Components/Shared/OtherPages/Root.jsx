@@ -5,6 +5,7 @@ import Footer from "../Footer";
 
 export default function Root(){
     const data = useLoaderData();
+    // console.log(data);
     
     return(
         <>

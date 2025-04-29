@@ -20,7 +20,11 @@ const Hero = ({ project_details, quickDetails, location, parent }) => {
           parent == "Banner" ? "" : "items-center"
         }`}
       >
-        <div className={`${parent == "Banner" ? "mb-[20px] self-start" : "mb-[20px]"}`}>
+        <div
+          className={`${
+            parent == "Banner" ? "mb-[20px] self-start" : "mb-[20px]"
+          }`}
+        >
           <h1
             className={`${
               parent == "Banner"
@@ -56,12 +60,14 @@ const Hero = ({ project_details, quickDetails, location, parent }) => {
               : "hidden"
           }`}
         >
-          <Button className="flex items-center gap-x-[10px]" href="https://wa.me/917814457626">
+          <a
+            className={`flex items-center gap-x-[10px] text-center px-[20px] py-[9px] text-[14px]  min-w-[120px] hover:cursor-pointer font-semibold`}
+            href="https://wa.me/917814457626" target="_blank">
             <span>
               <strong>Get details on</strong>{" "}
             </span>
             <i class="fab fa-whatsapp text-[#25d366] text-[1.5rem]"></i>
-          </Button>
+          </a>
         </div>
       </div>
     </div>

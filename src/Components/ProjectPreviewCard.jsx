@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ProjectPreviewCard = ({item}) => {
-    console.log(item);
+    // console.log(item);
   return (
     <div className="px-[10px] py-[10px]">
       <Link className="w-full" to={`/${item.project_details.slugURL.current}`}>
