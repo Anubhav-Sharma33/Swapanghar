@@ -25,6 +25,7 @@ const ProjectDetails = () => {
 
 
   return (
+    <>
     <FormModalContext>
       <Header project_details= {project_details}/>
         <BannerSection banners = {banners} project_details= {project_details} quickDetails={quickDetails} location={location}/>
@@ -40,7 +41,8 @@ const ProjectDetails = () => {
         <CompanyInfoSection />
       <Footer />
       <LowerNavBar />
-    </FormModalContext>
+      </FormModalContext>
+      </>
   );
 };
 
