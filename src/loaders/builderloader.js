@@ -12,20 +12,27 @@ export async function builderLoader({ params }) {
       _type == "projectListing" &&
       project_details.projectBy->builderName match $builderName
     ]{
-      _id,
-      project_details {
-        projectRef->{ projectName },
-        projectBy->{ builderName },
-        projectPrice->{ price },
-        rera_no,
-        slugURL
-      },
-      location {
-        state->{ name },
-        cityLocation->{ name },
-        projectAddress
+    _id,
+    project_details {
+      projectRef->,
+      projectBy->{ builderName },
+      projectPrice->{ price },
+      rera_no,
+      slugURL,
+      rera_link,
+      rera_qr {
+        asset->{
+          _id,
+          url
+        }
       }
+    },
+    location {
+      state->{ name },
+      cityLocation->{ name },
+      projectAddress
     }
+  }
   `;
 
   const results = await sanityClient.fetch(query, {

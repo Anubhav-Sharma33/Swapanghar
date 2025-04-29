@@ -13,11 +13,18 @@ export async function cityLoader({ params }) {
   ]{
     _id,
     project_details {
-      projectRef->{ projectName },
+      projectRef->,
       projectBy->{ builderName },
       projectPrice->{ price },
       rera_no,
-      slugURL
+      slugURL,
+      rera_link,
+      rera_qr {
+        asset->{
+          _id,
+          url
+        }
+      }
     },
     location {
       state->{ name },

@@ -1,10 +1,10 @@
-import sanityClient from '../sanityClient';
-import { deslugify } from '../utils/slug';
+import sanityClient from "../sanityClient";
+import { deslugify } from "../utils/slug";
 
 export async function projectListingLoader({ params }) {
   const projectType = deslugify(params.projectType); // Normalize input
 
-  const isNewLaunch = projectType === 'New Launches';
+  const isNewLaunch = projectType === "New Launches";
 
   // Define query separately for better GROQ parsing
   const query = isNewLaunch
@@ -13,52 +13,69 @@ export async function projectListingLoader({ params }) {
         _type == "projectListing" &&
         project_details.isNewLaunch == true
       ]{
-        _id,
-        project_details {
-          projectRef->{ projectName },
-          projectBy->{ builderName },
-          projectPrice->{ price },
-          rera_no,
-          slugURL
-        },
-        location {
-          state->{ name },
-          cityLocation->{ name },
-          projectAddress
+    _id,
+    project_details {
+      projectRef->,
+      projectBy->{ builderName },
+      projectPrice->{ price },
+      rera_no,
+      slugURL,
+      rera_link,
+      rera_qr {
+        asset->{
+          _id,
+          url
         }
       }
+    },
+    location {
+      state->{ name },
+      cityLocation->{ name },
+      projectAddress
+    }
+  }
     `
     : `
       *[
         _type == "projectListing" &&
         project_details.property_type == $projectType
       ]{
-        _id,
-        project_details {
-          projectRef->{ projectName },
-          projectBy->{ builderName },
-          projectPrice->{ price },
-          rera_no,
-          slugURL
-        },
-        location {
-          state->{ name },
-          cityLocation->{ name },
-          projectAddress
+    _id,
+    project_details {
+      projectRef->,
+      projectBy->{ builderName },
+      projectPrice->{ price },
+      rera_no,
+      slugURL,
+      rera_link,
+      rera_qr {
+        asset->{
+          _id,
+          url
         }
       }
+    },
+    location {
+      state->{ name },
+      cityLocation->{ name },
+      projectAddress
+    }
+  }
     `;
 
   try {
-    const data = await sanityClient.fetch(query, isNewLaunch ? {} : { projectType });
+    const data = await sanityClient.fetch(
+      query,
+      isNewLaunch ? {} : { projectType }
+    );
 
     return data;
   } catch (error) {
-    console.error('Error fetching project listings:', error);
+    console.error("Error fetching project listings:", error);
 
-    throw new Response('Failed to load project listings', {
+    throw new Response("Failed to load project listings", {
       status: 500,
-      statusText: 'Internal Server Error',
+      statusText: "Internal Server Error",
     });
   }
 }

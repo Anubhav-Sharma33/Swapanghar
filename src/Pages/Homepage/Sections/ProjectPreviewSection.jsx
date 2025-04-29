@@ -8,7 +8,6 @@ import Slider from "react-slick";
 
 const ProjectPreviewSection = () => {
   const { data, isLoading, error } = useProjects();
-  // console.log(data);
 
   const settings = {
     dots: false,

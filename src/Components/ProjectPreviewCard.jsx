@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { urlFor } from "../utils/imageUrl";
 
 const ProjectPreviewCard = ({item}) => {
-    // console.log(item);
+  console.log(item)
   return (
     <div className="px-[10px] py-[10px]">
       <Link className="w-full" to={`/${item.project_details.slugURL.current}`}>
@@ -12,19 +13,19 @@ const ProjectPreviewCard = ({item}) => {
           >
             <div className="flex flex-col justify-center font-bold ">
               <p className="break-all whitespace-normal text-[.875em]">
-                <span className="text-green-900">RERA No:</span> WBRERA/P/SOU/2023/000015
+                <span className="text-green-900">RERA No:</span> {item.project_details.rera_no}
               </p>
               <span
-                href="https://rera.karnataka.gov.in/"
+                href={item.project_details.rera_link}
                 className="break-all whitespace-normal text-[.825rem] text-green-900"
                >
                 <i className="fa fa-link text-[10px] sm:text-xs md:text-sm text-green-900"></i>{" "}
-                https://rera.karnataka.gov.in
+                {item.project_details.rera_link}
               </span>
             </div>
             <div className="flex justify-center flex-grow-0 flex-shrink-0 ">
               <img
-                src="https://sar.ecis.in/api/starestate/star_estate/projects/2025-02-19_12-39-13_Untitled.png"
+                src={urlFor(item.project_details.rera_qr).url()}
                 alt="QR Code"
                 className="h-[30px] w-auto"
               />
@@ -32,7 +33,7 @@ const ProjectPreviewCard = ({item}) => {
           </div>
           <div className="w-full">
             <img
-              src="https://sar.ecis.in/api/starestate/star_estate/projects/2025-02-17_05-45-38_mo600x600.jpg"
+              src={urlFor(item.project_details.project_thumbnail).url()}  
               className="w-full h-auto object-center"
             />
           </div>
