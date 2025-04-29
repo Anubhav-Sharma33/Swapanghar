@@ -26,7 +26,14 @@ export async function projectListingLoader({ params }) {
           _id,
           url
         }
-      }
+      },
+      property_type,
+      project_thumbnail{
+        asset->{
+          _id,
+          url
+        }
+      },
     },
     location {
       state->{ name },
@@ -53,7 +60,14 @@ export async function projectListingLoader({ params }) {
           _id,
           url
         }
-      }
+      },
+      property_type,
+      project_thumbnail{
+        asset->{
+          _id,
+          url
+        }
+      },
     },
     location {
       state->{ name },

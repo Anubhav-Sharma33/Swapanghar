@@ -25,7 +25,14 @@ export async function builderLoader({ params }) {
           _id,
           url
         }
-      }
+      },
+      property_type,
+      project_thumbnail{
+        asset->{
+          _id,
+          url
+        }
+      },
     },
     location {
       state->{ name },
