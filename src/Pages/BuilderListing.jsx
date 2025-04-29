@@ -9,11 +9,6 @@ import { ContentModalContext } from "../Store/Context/ContentModalContext";
 import { urlFor } from "../utils/imageUrl";
 import onScroll from "../hooks/scrollToTop";
 
-const images = {
-  mobile: "https://www.starestate.com/assets/images/banner-all-projects-m.jpg",
-  desktop: "https://www.starestate.com/assets/images/banner-all-projects.jpg",
-};
-
 const BuilderListing = () => {
   onScroll();
   const data = useLoaderData();

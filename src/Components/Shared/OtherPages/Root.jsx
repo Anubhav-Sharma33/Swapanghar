@@ -14,7 +14,7 @@ export default function Root(){
             <Navbar data = {data}/>
         </header>
         <main>
-            <Outlet/>
+            <Outlet context = {data}/>
         </main>
         <footer>
             <Footer/>

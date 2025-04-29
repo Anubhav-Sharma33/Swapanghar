@@ -5,12 +5,15 @@ import SectionThree from "./Homepage/Sections/SectionThree";
 import SectionFour from "./Homepage/Sections/SectionFour";
 import ProjectPreviewSection from "./Homepage/Sections/ProjectPreviewSection";
 import onScroll from "../hooks/scrollToTop";
+import { useLoaderData, useOutletContext } from "react-router-dom";
 
 const Home = () => {
-  onScroll()
+  const loaderData = useOutletContext()
+  // console.log(loaderData);
+  onScroll();
   return (
     <>
-      <Banner/>
+      <Banner data = {loaderData}/>
       <SectionOne />
       <SectionThree />
       <SectionFour />

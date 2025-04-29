@@ -24,7 +24,7 @@ const ProjectListing = () => {
     Content: projectType === "New Launches" ? "" : data.propertyTypeDetails.moreData,
   };  
   // console.log(projectType);
-  console.log(data);
+  // console.log(data);
   const [url, setUrl] = useState(images.desktop);
 
   useEffect(() => {

@@ -1,19 +1,31 @@
 //Things To be done:-
 //Split code into Components
-//Update if better css is possible 
+//Update if better css is possible
 //Update margin-padding , font-size, colour, hover-effect , font
+const priceRangeMap = {
+  "UpTo 1 Cr": { min: 0, max: 10000000 },
+  "1-3 Cr": { min: 10000000, max: 30000000 },
+  "3-5 Cr": { min: 30000000, max: 50000000 },
+  "Above 5 Cr": { min: 50000000, max: Infinity },
+};
 
+const img = [
+  "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
+  "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
+  "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
+  "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
+];
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Banner = () => {
+const Banner = ({ data }) => {
+  // console.log(data);
   const [index, setIndex] = useState(0);
-  const img = [
-    "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
-    "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
-    "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
-    "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
-  ];
+  const propertyTypeRef = useRef();
+  const locationRef = useRef();
+  const budgetRef = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -82,10 +94,13 @@ const Banner = () => {
                         id="property-type"
                         className="w-full flex lg:flex-1 justify-center items-center bg-white border-b border-b-[#0000001a] md:border md:border-[#0000001a]"
                       >
-                        <select className="w-full text-center py-4 px-3 text-sm text-gray-700 focus:outline-none">
-                          <option>Property Type</option>
-                          <option value="commercial">Commercial</option>
-                          <option value="residential">Residential</option>
+                        <select
+                          ref={propertyTypeRef}
+                          className="w-full text-center py-4 px-3 text-sm text-gray-700 focus:outline-none"
+                        >
+                          <option value="">Property Type</option>
+                          <option value="Commercial">Commercial</option>
+                          <option value="Residential">Residential</option>
                         </select>
                       </div>
 
@@ -94,10 +109,16 @@ const Banner = () => {
                         id="property-location"
                         className="w-full flex lg:flex-1 justify-center items-center bg-white border-b border-b-[#0000001a] md:border md:border-[#0000001a]"
                       >
-                        <select className="w-full text-center py-4 px-3 text-sm text-gray-700 focus:outline-none">
-                          <option>Project Location</option>
-                          <option value="city-1">City 1</option>
-                          <option value="city-2">City 2</option>
+                        <select
+                          ref={locationRef}
+                          className="w-full text-center py-4 px-3 text-sm text-gray-700 focus:outline-none"
+                        >
+                          <option value="">Project Location</option>
+                          {data.cityLocation.map((item, idx) => (
+                            <option key={idx} value={item.name}>
+                              {item.name}
+                            </option>
+                          ))}
                         </select>
                       </div>
 
@@ -106,10 +127,16 @@ const Banner = () => {
                         id="budget"
                         className="w-full flex lg:flex-1 justify-center items-center bg-white border-b border-b-[#0000001a] md:border md:border-[#0000001a]"
                       >
-                        <select className="w-full text-center py-4 px-3 text-sm text-gray-700 focus:outline-none">
-                          <option>Budget</option>
-                          <option value="50-lacs">Up to 50 Lacs</option>
-                          <option value="1-cr">Up to 1 Cr</option>
+                        <select
+                          ref={budgetRef}
+                          className="w-full text-center py-4 px-3 text-sm text-gray-700 focus:outline-none"
+                        >
+                          <option value="">Budget</option>
+                          {Object.keys(priceRangeMap).map((label) => (
+                            <option key={label} value={label}>
+                              {label}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -119,7 +146,29 @@ const Banner = () => {
                       id="search-button"
                       className="flex justify-center items-center w-full lg:w-[16%] bg-black text-white"
                     >
-                      <button className="w-full py-4 px-8 text-sm text-white focus:outline-none">
+                      <button
+                        type="button"
+                        className="w-full py-4 px-8 text-sm text-white focus:outline-none"
+                        onClick={() => {
+                          const propertyType = propertyTypeRef.current.value;
+                          const location = locationRef.current.value;
+                          const budget = budgetRef.current.value;
+
+                          if (propertyType && location && budget) {
+                            navigate(
+                              `/projects?propertyType=${encodeURIComponent(
+                                propertyType
+                              )}&location=${encodeURIComponent(
+                                location
+                              )}&budget=${encodeURIComponent(budget)}`
+                            );
+                          } else {
+                            alert(
+                              "Please select all fields before submitting."
+                            );
+                          }
+                        }}
+                      >
                         Submit
                       </button>
                     </div>

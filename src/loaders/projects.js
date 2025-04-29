@@ -1,56 +1,70 @@
-import sanityClient from '../sanityClient';
+import sanityClient from "../sanityClient";
 
-export async function projects() {
+const priceRangeMap = {
+  "UpTo 1 Cr": { min: 0, max: 10000000 },
+  "1-3 Cr": { min: 10000000, max: 30000000 },
+  "3-5 Cr": { min: 30000000, max: 50000000 },
+  "Above 5 Cr": { min: 50000000, max: 1000000000 },
+};
+
+export async function projects({ request }) {
   try {
+    const url = new URL(request.url);
+    const propertyType = url.searchParams.get("propertyType");
+    const location = url.searchParams.get("location");
+    const budget = url.searchParams.get("budget");
+
+    const budgetRange = priceRangeMap[budget];
+
+    let filters = [];
+
+    if (propertyType) {
+      filters.push(`project_details.property_type->typeName match "${propertyType}"`);
+    }
+
+    if (location) {
+      filters.push(`location.cityLocation->name match "${location}"`);
+    }
+
+    if (budgetRange) {
+      filters.push(
+        `project_details.projectPrice->price >= ${budgetRange.min} && project_details.projectPrice->price < ${budgetRange.max}`
+      );
+    }
+
+    const filterString =
+      filters.length > 0
+        ? `*[ _type == "projectListing" && ${filters.join(" && ")} ]`
+        : `*[ _type == "projectListing" ]`;
+
     const query = `
-      *[_type == "projectListing"]{
+      ${filterString}{
         _id,
         project_details {
-          projectRef->,
+          projectRef->{ name },
           projectBy->{ builderName },
           projectPrice->{ price },
+          property_type->{ typeName },
           rera_no,
-          slugURL,
           rera_link,
-          rera_qr {
-            asset->{
-              _id,
-              url
-            }
-          },
-          property_type->,
-          project_thumbnail{
-            asset->{
-              _id,
-              url
-            }
-          },
+          slugURL,
+          rera_qr { asset->{ url } },
+          project_thumbnail { asset->{ url } }
         },
         location {
+          projectAddress,
           state->{ name },
-          cityLocation->{ name },
-          projectAddress
+          cityLocation->{ name }
         }
       }
     `;
 
     const results = await sanityClient.fetch(query);
-
-    if (!results || results.length === 0) {
-      throw new Error("No projects found");
-    }
-
     return results;
-
-  } catch (error) {
-    console.error("Error in projects loader:", error.message);
-
-    throw new Response(error.message || "Failed to load projects", {
+  } catch (err) {
+    console.error("Project loader failed:", err.message);
+    throw new Response(err.message || "Project loading error", {
       status: 500,
-      statusText: "Internal Server Error",
     });
-
-    // Optional fallback instead of throwing error:
-    // return [];
   }
 }
