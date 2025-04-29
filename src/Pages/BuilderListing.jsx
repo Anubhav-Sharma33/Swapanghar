@@ -17,7 +17,7 @@ const BuilderListing = () => {
   const data = useLoaderData();
   const { openModal } = useContext(ContentModalContext);
   const content = {
-    heading: "City Details",
+    heading: "Builder Details",
     Content: data.builderDetails.moreData,
   };
   const [images, setImages] = useState(data.builderDetails.builderImages);

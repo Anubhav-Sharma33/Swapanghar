@@ -26,7 +26,7 @@ export async function cityLoader({ params }) {
             rera_qr {
               asset->{ _id, url }
             },
-            property_type,
+            property_type->,
             project_thumbnail{
               asset->{ _id, url }
             },

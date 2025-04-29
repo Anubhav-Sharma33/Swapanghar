@@ -18,7 +18,7 @@ export async function projects() {
               url
             }
           },
-          property_type,
+          property_type->,
           project_thumbnail{
             asset->{
               _id,

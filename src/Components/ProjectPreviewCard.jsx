@@ -48,7 +48,7 @@ const ProjectPreviewCard = ({item}) => {
               <i className="fa fa-map-marker-alt"></i>{item.location.projectAddress}
             </span>
             <span className="flex gap-x-[4px] items-center">
-              <i className="fa-brands fa-font-awesome"></i>{item.project_details.property_type}
+              <i className="fa-brands fa-font-awesome"></i>{item.project_details.property_type.typeName}
             </span>
           </div>
         </div>

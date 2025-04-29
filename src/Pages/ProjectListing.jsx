@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import SectionWrapper from "../Components/UI/ProjectDetails/SectionWrapper";
 import ProjectPreviewCard from "../Components/ProjectPreviewCard";
 import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
 import Button from "../Components/UI/ProjectDetails/Button";
 import { deslugify } from "../utils/slug";
+import { ContentModalContext } from "../Store/Context/ContentModalContext";
 
 const images = {
   mobile: "https://www.starestate.com/assets/images/banner-all-projects-m.jpg",
@@ -15,6 +16,11 @@ const ProjectListing = () => {
   const data = useLoaderData();
   const projectData = useParams();
   const projectType = deslugify(projectData.projectType);
+  const {openModal} = useContext(ContentModalContext);
+  const content = {
+    heading: projectType,
+    Content: data.propertyTypeDetails.moreData,
+  };
   // console.log(projectType);
   console.log(data);
   const [url, setUrl] = useState(images.desktop);
@@ -70,10 +76,30 @@ const ProjectListing = () => {
             {projectType} Projects
           </h1>
         </div>
+        {projectType != "New Launches" && (<div className="flex flex-col text-[1rem] font-normal text-[#525252]">
+          {data.propertyTypeDetails.typeDetails.map((item) => {
+            return <p className="text-center mb-[1rem]">{item.detail}</p>;
+          })}
+        </div>)}
+        {(projectType != "New Launches" && data.propertyTypeDetails.moreData.length != 0) && (
+          <div className="flex gap-x-[10px] mt-[9px] justify-center font-semibold mb-[2rem]">
+            <Button
+              type="button"
+              className={"bg-[#2f2f2f] text-white"}
+              onClick={() => {
+                openModal(content);
+              }}
+            >
+              READ MORE
+            </Button>
+          </div>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {data.map((item) => (
+          {
+            data.projects.map((item) => (
             <ProjectPreviewCard item={item} />
-          ))}
+          ))
+          }
         </div>
       </SectionWrapper>
       <CompanyInfoSection />

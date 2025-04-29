@@ -17,7 +17,7 @@ const fetchProjects = async () => {
           url
         }
       },
-      property_type,
+      property_type->,
       project_thumbnail{
         asset->{
           _id,
