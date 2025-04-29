@@ -1,6 +1,7 @@
 import { Outlet, useLoaderData } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "../Footer";
+import LowerNavBar from "../ProjectDetails/LowerNavBAr";
 
 
 export default function Root(){
@@ -18,6 +19,7 @@ export default function Root(){
         <footer>
             <Footer/>
         </footer>
+        <LowerNavBar/>
         </>
     )
 }
