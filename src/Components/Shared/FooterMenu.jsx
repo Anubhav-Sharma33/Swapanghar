@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function FooterMenu(props) {
     const { title, submenu, social } = props.menu;
   
@@ -17,14 +19,14 @@ export default function FooterMenu(props) {
                 key={index}
                 className="border border-white rounded-full px-2 sm:border-none sm:px-0"
               >
-                <a
-                  href={cur.link}
+                <Link
+                  to={cur.link}
                   className={`text-xs transition duration-300 ${
                     social ? "text-inherit" : "text-white hover:text-blue-500"
                   }`}
                 >
                   {cur.placeholder}
-                </a>
+                </Link>
               </li>
             );
           })}

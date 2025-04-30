@@ -6,9 +6,9 @@ const menu1 = {
   social:false,
   submenu: [
     // ✅ Submenu should be assigned to a key
-    { placeholder: "Commercial", link: "#" },
-    { placeholder: "New Launches", link: "#" },
-    { placeholder: "Residential", link: "#" }, // ✅ Added a valid second object
+    { placeholder: "Commercial", link: "/projects/commercial" },
+    { placeholder: "New Launches", link: "/projects/new-launches" },
+    { placeholder: "Residential", link: "/projects/residential" }, // ✅ Added a valid second object
   ],
 };
 const menu2 = {
