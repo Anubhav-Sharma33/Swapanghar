@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { ContentModalContext } from "../Store/Context/ContentModalContext";
 import { FormModelContext } from "../Store/Context/FormModalContext";
+import { useLocation } from "react-router-dom";
 
 const ContentModal = (props) => {
   const { setModalContent, closeModal, modalContent } = useContext(ContentModalContext);
   const {openModal}  = useContext(FormModelContext);
+  const location = useLocation();
   // console.log(modalContent);
+  const isBaseSlugPage = /^\/[^/]+$/.test(location.pathname);
   return (
     <div className="fixed w-full max-w-[440px] top-0 right-0 bottom-0 bg-white z-20 mt-[81px] md:mt-[87px] lg:mt-[58px] mb-[35px] sm:mb-[38px] md:mb-0 shadow-[0_0_2rem_rgb(0_0_0_/_20%)] text-[#2f2f2f]">
       <div className=" h-full grid grid-rows-[auto_1fr_auto]">
@@ -27,9 +30,16 @@ const ContentModal = (props) => {
           )
         })}
         </div>
-        <div className="w-full flex pt-0 pr-5 pb-2 pl-5">
-          <a className="w-full px-[20px] py-[9px] text-[13px] bg-[#2f2f2f] text-white min-w-[120px] border border-amber-50 font-semibold text-center" onClick={()=>{openModal()}}>I'm interested in this project</a>
-        </div>
+        {isBaseSlugPage && (
+          <div className="w-full flex pt-0 pr-5 pb-2 pl-5">
+            <a
+              className="w-full px-[20px] py-[9px] text-[13px] bg-[#2f2f2f] text-white min-w-[120px] border border-amber-50 font-semibold text-center hover:cursor-pointer"
+              onClick={() => openModal()}
+            >
+              I'm interested in this project
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

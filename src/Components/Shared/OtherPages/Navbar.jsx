@@ -94,13 +94,13 @@ export default function Navbar({data}) {
             <Megamenu title={"Builder"} list={projectBy}/>
           </div>
           <div className="group">
-            <a
-              href="#"
+            <Link
+              to="/projects"
               className="hover:text-gray-900 transition-colors flex items-center py-4"
             >
               <span>Projects</span>
               <i className="fa fa-caret-down ml-1"></i>
-            </a>
+            </Link>
             <Megamenu title ={"Projects"} list={list3} />
           </div>
         </div>

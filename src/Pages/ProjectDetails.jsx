@@ -16,6 +16,7 @@ import AboutSection from "./ProjectDetails/Sections/AboutSection";
 import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
 import { useLoaderData } from "react-router-dom";
 import onScroll from "../hooks/scrollToTop";
+import ContentModalProvider from "../Store/Context/ContentModalContext";
 
 const ProjectDetails = () => {
   const data = useLoaderData();
@@ -27,6 +28,7 @@ const ProjectDetails = () => {
   return (
     <>
     <FormModalContext>
+      <ContentModalProvider> 
       <Header project_details= {project_details}/>
         <BannerSection banners = {banners} project_details= {project_details} quickDetails={quickDetails} location={location}/>
         <FormSection project_details= {project_details} quickDetails={quickDetails} location = {location}/>
@@ -41,6 +43,7 @@ const ProjectDetails = () => {
         <CompanyInfoSection />
       <Footer />
       <LowerNavBar />
+      </ContentModalProvider> 
       </FormModalContext>
       </>
   );

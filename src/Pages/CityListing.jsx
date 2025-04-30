@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
 import SectionWrapper from "../Components/UI/ProjectDetails/SectionWrapper";
 import ProjectPreviewCard from "../Components/ProjectPreviewCard";
@@ -53,15 +53,15 @@ const CityListing = () => {
             }}
           >
             <li className="flex items-center gap-x-2">
-              <a href="/" className="text-primary hover:underline">
+              <Link to= "/" className="text-primary hover:underline">
                 Home
-              </a>
+              </Link>
               <span className="text-gray-400">/</span>
             </li>
             <li className="flex items-center gap-x-2">
-              <a href="#" className="text-primary hover:underline">
+              <Link to="/projects" className="text-primary hover:underline">
                 Projects
-              </a>
+              </Link>
               <span className="text-gray-400">/</span>
             </li>
             <li className="text-gray-700">{city}</li>

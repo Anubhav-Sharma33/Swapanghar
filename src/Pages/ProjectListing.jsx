@@ -57,15 +57,15 @@ const ProjectListing = () => {
             }}
           >
             <li className="flex items-center gap-x-2">
-              <a href="/" className="text-primary hover:underline">
+            <Link to= "/" className="text-primary hover:underline">
                 Home
-              </a>
+              </Link>
               <span className="text-gray-400">/</span>
             </li>
             <li className="flex items-center gap-x-2">
-              <a href="#" className="text-primary hover:underline">
-               Projects
-              </a>
+            <Link to="/projects" className="text-primary hover:underline">
+                Projects
+              </Link>
               <span className="text-gray-400">/</span>
             </li>
             <li className="text-gray-700">{projectType}</li>

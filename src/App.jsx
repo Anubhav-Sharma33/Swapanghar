@@ -5,9 +5,7 @@ import FormModalContext from "./Store/Context/FormModalContext";
 
 function App() {
   return (
-      <ContentModalProvider>
       <RouterProvider router={router}/>
-      </ContentModalProvider>
   );
 }
 
