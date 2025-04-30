@@ -12,7 +12,8 @@ export async function projects({ request }) {
   try {
     const url = new URL(request.url);
     const propertyType = url.searchParams.get("propertyType");
-    const location = deslugify(url.searchParams.get("location"));
+    const locationSlug = url.searchParams.get("location");
+    const location = locationSlug ? deslugify(locationSlug) : null;
     const budget = url.searchParams.get("budget");
 
     const budgetRange = priceRangeMap[budget];
@@ -20,7 +21,9 @@ export async function projects({ request }) {
     let filters = [];
 
     if (propertyType) {
-      filters.push(`project_details.property_type->typeName match "${propertyType}"`);
+      filters.push(
+        `project_details.property_type->typeName match "${propertyType}"`
+      );
     }
 
     if (location) {

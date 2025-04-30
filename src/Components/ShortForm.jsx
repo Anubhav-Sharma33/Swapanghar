@@ -17,7 +17,7 @@ const ShortForm = ({ projectLocation = [], city = "" }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const selectedLocation =
-      projectLocation.length === 0 ? city : slugify(locationRef.current.value);
+      projectLocation.length === 0 ? slugify(city) : slugify(locationRef.current.value);
     const selectedBudget = budgetRef.current.value;
 
     const params = new URLSearchParams();
