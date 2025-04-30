@@ -31,7 +31,6 @@ export async function projectLoader({ params }) {
     if (!data) {
       throw new Response("Not Found", { status: 404 });
     }
-
     return data;
   } catch (err) {
     throw new Response("Server Error", { status: 500 });

@@ -13,12 +13,15 @@ import Home from "../Pages/Homepage";
 import CityListing from "../Pages/CityListing";
 import ProjectsPage from "../Pages/ProjectsPage";
 import { projects } from "../loaders/projects";
+import GlobalError from "../Components/GlobalError";
+import NotFound from "../Components/NotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     loader: cityLocationAndProjectByLoader,
+    errorElement:<GlobalError/>,
     children: [
       {
         index: true,
@@ -58,6 +61,7 @@ export const router = createBrowserRouter([
         <Outlet />
       </Suspense>
     ),
+    errorElement:<GlobalError/>,
     children: [
       {
         index: true,
@@ -66,4 +70,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*", // 👈 catch-all route for unmatched URLs// This can be blank or a dummy wrapper
+    element: <GlobalError />
+  }
 ]);
