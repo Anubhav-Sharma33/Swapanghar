@@ -31,10 +31,12 @@ const ShortForm = ({ projectLocation = [], city = "" }) => {
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4 md:px-6 lg:px-0">
       <div className="max-w-5xl mx-auto">
         <div className="bg-white/30 backdrop-blur-sm shadow-xl rounded-lg p-5">
-          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-0 md:flex md:items-center md:justify-between md:gap-4">
-            
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4 md:space-y-0 md:flex md:items-center md:justify-between md:gap-4"
+          >
             {/* Location Select */}
-            <div className="w-full md:w-1/2 bg-white">
+            <div className="relative w-full md:w-1/2 bg-white">
               <select
                 ref={locationRef}
                 name="cityLocation"
@@ -50,10 +52,13 @@ const ShortForm = ({ projectLocation = [], city = "" }) => {
                     </option>
                   ))}
               </select>
+              <div className="sm:hidden pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                ▼
+              </div>
             </div>
 
             {/* Budget Select */}
-            <div className="w-full md:w-1/2 bg-white">
+            <div className="relative w-full md:w-1/2 bg-white">
               <select
                 ref={budgetRef}
                 name="projectPrice"
@@ -68,6 +73,9 @@ const ShortForm = ({ projectLocation = [], city = "" }) => {
                   </option>
                 ))}
               </select>
+              <div className=" sm:hidden pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                ▼
+              </div>
             </div>
 
             {/* Submit Button */}
