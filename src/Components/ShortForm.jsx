@@ -9,8 +9,7 @@ const priceRangeMap = {
   "Above 5 Cr": { min: 50000000, max: Infinity },
 };
 
-const ShortForm = ({ projectLocation = [] ,city = "" }) => {
-  // console.log(city)
+const ShortForm = ({ projectLocation = [], city = "" }) => {
   const locationRef = useRef();
   const budgetRef = useRef();
   const navigate = useNavigate();
@@ -29,64 +28,58 @@ const ShortForm = ({ projectLocation = [] ,city = "" }) => {
   };
 
   return (
-    <div className="absolute top-[50%] left-[50%] translate-[-50%] w-full scroll-mt-[calc(81px-2rem)] md:scroll-mt-[calc(86px-2rem)] lg:scroll-mt-[calc(57px-2rem)]">
-      <div className="w-full flex flex-col items-center justify-center px-[1.5rem] md:px-[2rem] lg:w-[91%] lg:px-[0.75rem] max-w-[1340px] m-auto">
-        <div className="w-full max-w-[850px] mx-auto">
-          <div className="w-full p-[10px] bg-white/25 shadow-[0_1rem_3rem_rgba(0,0,0,0.2)] backdrop-blur-[5px]">
-            <form onSubmit={handleSubmit}>
-              <div className="flex flex-col flex-wrap gap-y-[15px] md:flex-row md:gap-y-0 px-[0.25rem] md:gap-x-[10px] md:justify-center">
-                <div className="w-full shrink-0 md:w-[81%]">
-                  <div className="flex">
-                    {/* Show projectLocation as read-only */}
-                    <div className="w-1/2 grow-1 shrink-1 bg-white text-[14px]">
-                      <select
-                        name="cityLocation"
-                        className="w-full p-[8px]"
-                        ref={locationRef}
-                      >
-                        <option value="" selected>
-                          Project Location
-                        </option>
-                        {Array.isArray(projectLocation) && projectLocation.map((item, idx) => (
-                          <option key={idx} value={item.name}>
-                            {item.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4 md:px-6 lg:px-0">
+      <div className="max-w-5xl mx-auto">
+        <div className="bg-white/30 backdrop-blur-sm shadow-xl rounded-lg p-5">
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-0 md:flex md:items-center md:justify-between md:gap-4">
+            
+            {/* Location Select */}
+            <div className="w-full md:w-1/2 bg-white">
+              <select
+                ref={locationRef}
+                name="cityLocation"
+                className="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+              >
+                <option value="" selected disabled>
+                  Project Location
+                </option>
+                {Array.isArray(projectLocation) &&
+                  projectLocation.map((item, idx) => (
+                    <option key={idx} value={item.name}>
+                      {item.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
 
-                    {/* Budget Dropdown */}
-                    <div className="w-1/2 grow-1 shrink-1 bg-white text-[14px]">
-                      <select
-                        name="projectPrice"
-                        ref={budgetRef}
-                        className="w-full p-[8px]"
-                      >
-                        <option value="" selected>
-                          Budget
-                        </option>
-                        {Object.keys(priceRangeMap).map((label) => (
-                          <option key={label} value={label}>
-                            {label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                </div>
+            {/* Budget Select */}
+            <div className="w-full md:w-1/2 bg-white">
+              <select
+                ref={budgetRef}
+                name="projectPrice"
+                className="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+              >
+                <option value="" selected disabled>
+                  Budget
+                </option>
+                {Object.keys(priceRangeMap).map((label) => (
+                  <option key={label} value={label}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-                {/* Submit Button */}
-                <div className="w-full md:w-auto">
-                  <button
-                    type="submit"
-                    className="w-full bg-black text-white flex min-w-[120px] items-center justify-center text-center text-[13px] font-semibold uppercase px-[20px] py-[9px] gap-[0.75rem] border border-transparent transition-all duration-300 ease-in-out"
-                  >
-                    Search
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+            {/* Submit Button */}
+            <div className="w-full md:w-auto">
+              <button
+                type="submit"
+                className="w-full bg-black hover:bg-gray-800 text-white rounded-md text-sm font-semibold uppercase tracking-wider px-5 py-2 transition-all duration-300"
+              >
+                Search
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
