@@ -67,7 +67,7 @@ const Banner = ({ data }) => {
             <form onSubmit={(e) => e.preventDefault()} className="flex flex-col lg:flex-row gap-3">
               <select
                 ref={propertyTypeRef}
-                className="flex-1 py-3 px-4 rounded-md text-sm bg-white text-gray-800 focus:outline-none border border-gray-300"
+                className="flex-1 py-4 px-5 rounded-md text-base bg-white text-gray-800 focus:outline-none border border-gray-300"
               >
                 <option value="">Property Type</option>
                 <option value="Commercial">Commercial</option>
@@ -76,7 +76,7 @@ const Banner = ({ data }) => {
 
               <select
                 ref={locationRef}
-                className="flex-1 py-3 px-4 rounded-md text-sm bg-white text-gray-800 focus:outline-none border border-gray-300"
+                className="flex-1 py-4 px-5 rounded-md text-base bg-white text-gray-800 focus:outline-none border border-gray-300"
               >
                 <option value="">Project Location</option>
                 {data.cityLocation.map((item, idx) => (
@@ -88,7 +88,7 @@ const Banner = ({ data }) => {
 
               <select
                 ref={budgetRef}
-                className="flex-1 py-3 px-4 rounded-md text-sm bg-white text-gray-800 focus:outline-none border border-gray-300"
+                className="flex-1 py-4 px-5 rounded-md text-base bg-white text-gray-800 focus:outline-none border border-gray-300"
               >
                 <option value="">Budget</option>
                 {Object.keys(priceRangeMap).map((label) => (
@@ -101,7 +101,7 @@ const Banner = ({ data }) => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="w-full lg:w-auto py-3 px-6 bg-black text-white text-sm rounded-md hover:bg-gray-900 transition"
+                className="w-full lg:w-auto py-4 px-7 bg-black text-white text-base rounded-md hover:bg-gray-900 transition"
               >
                 Submit
               </button>
@@ -111,19 +111,19 @@ const Banner = ({ data }) => {
             <div className="mt-6 flex flex-col lg:flex-row gap-3">
               <Link
                 to="/projects/new-launches"
-                className="flex-1 text-center py-3 bg-white/50 rounded-md text-sm font-medium hover:shadow-md hover:scale-105 transition"
+                className="flex-1 text-center py-4 bg-white/50 rounded-md text-base font-medium hover:shadow-md hover:scale-105 transition"
               >
                 NEW LAUNCHES
               </Link>
               <Link
                 to="/projects/commercial"
-                className="flex-1 text-center py-3 bg-white/50 rounded-md text-sm font-medium hover:shadow-md hover:scale-105 transition"
+                className="flex-1 text-center py-4 bg-white/50 rounded-md text-base font-medium hover:shadow-md hover:scale-105 transition"
               >
                 COMMERCIAL PROPERTIES
               </Link>
               <Link
                 to="/projects/residential"
-                className="flex-1 text-center py-3 bg-white/50 rounded-md text-sm font-medium hover:shadow-md hover:scale-105 transition"
+                className="flex-1 text-center py-4 bg-white/50 rounded-md text-base font-medium hover:shadow-md hover:scale-105 transition"
               >
                 RESIDENTIAL PROPERTIES
               </Link>
