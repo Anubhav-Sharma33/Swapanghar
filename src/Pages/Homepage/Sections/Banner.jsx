@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { deslugify, slugify } from "../../../utils/slug";
 
 const priceRangeMap = {
   "UpTo 1 Cr": { min: 0, max: 10000000 },
@@ -26,9 +27,10 @@ const Banner = ({ data }) => {
 
   const handleSubmit = () => {
     const propertyType = propertyTypeRef.current.value;
-    const location = locationRef.current.value;
+    const location = slugify(locationRef.current.value);
     const budget = budgetRef.current.value;
     const params = new URLSearchParams();
+  
 
     if (propertyType) params.append("propertyType", propertyType);
     if (location) params.append("location", location);

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData, useParams,Link } from "react-router-dom";
+import { useLoaderData, useParams,Link, useOutletContext } from "react-router-dom";
 import SectionWrapper from "../Components/UI/ProjectDetails/SectionWrapper";
 import ProjectPreviewCard from "../Components/ProjectPreviewCard";
 import CompanyInfoSection from "./ProjectDetails/Sections/CompanyInfoSection";
@@ -7,6 +7,7 @@ import Button from "../Components/UI/ProjectDetails/Button";
 import { deslugify } from "../utils/slug";
 import { ContentModalContext } from "../Store/Context/ContentModalContext";
 import onScroll from "../hooks/scrollToTop";
+import ShortForm from "../Components/ShortForm";
 
 const images = {
   mobile: "https://www.starestate.com/assets/images/banner-all-projects-m.jpg",
@@ -15,6 +16,8 @@ const images = {
 
 const ProjectListing = () => {
   onScroll()
+  const parentData = useOutletContext();
+  console.log(parentData);
   const data = useLoaderData();
   const projectData = useParams();
   const projectType = deslugify(projectData.projectType);
@@ -44,8 +47,9 @@ const ProjectListing = () => {
   }, []);
   return (
     <>
-      <div className="w-full">
+      <div className="relative w-full">
         <img src={url} className="w-full h-auto object-cover" />
+        <ShortForm projectLocation={parentData.cityLocation}/>
       </div>
       <SectionWrapper>
         <div className="w-full">

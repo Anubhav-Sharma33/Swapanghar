@@ -1,4 +1,5 @@
 import sanityClient from "../sanityClient";
+import { deslugify } from "../utils/slug";
 
 const priceRangeMap = {
   "UpTo 1 Cr": { min: 0, max: 10000000 },
@@ -11,7 +12,7 @@ export async function projects({ request }) {
   try {
     const url = new URL(request.url);
     const propertyType = url.searchParams.get("propertyType");
-    const location = url.searchParams.get("location");
+    const location = deslugify(url.searchParams.get("location"));
     const budget = url.searchParams.get("budget");
 
     const budgetRange = priceRangeMap[budget];

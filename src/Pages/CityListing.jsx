@@ -8,6 +8,7 @@ import { deslugify } from "../utils/slug";
 import { urlFor } from "../utils/imageUrl";
 import { ContentModalContext } from "../Store/Context/ContentModalContext";
 import onScroll from "../hooks/scrollToTop";
+import ShortForm from "../Components/ShortForm";
 
 const CityListing = () => {
   onScroll();
@@ -20,7 +21,7 @@ const CityListing = () => {
   const [images, setImages] = useState(data.cityDetails.cityImages);
   const { cityName } = useParams();
   const city = deslugify(cityName);
-  console.log(data);
+  // console.log(data);
   const [url, setUrl] = useState(urlFor(images.desktopImage).url());
 
   useEffect(() => {
@@ -40,8 +41,9 @@ const CityListing = () => {
   }, []);
   return (
     <>
-      <div className="w-full">
+      <div className="relative w-full">
         <img src={url} className="w-full h-auto object-cover" />
+        <ShortForm city={city}/>
       </div>
       <SectionWrapper>
         <div className="w-full">
