@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import MenuWithSubMenu from "./MenuWithSubmenu";
 import {list3,list4 } from "./Shared/OtherPages/Navbar";
 import { FaFacebook, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 export default function Togglemenu({data}) {
   const {cityLocation,projectBy} = data;
@@ -52,9 +53,9 @@ export default function Togglemenu({data}) {
       <div className="flex-grow overflow-y-auto">
         <ul className="space-y-1 p-2">
           <li>
-            <a href="#" className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-700">
+            <Link href="/" className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-700">
               Home
-            </a>
+            </Link>
           </li>
           <li>
             <a href="#" className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-700">

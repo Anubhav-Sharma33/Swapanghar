@@ -14,9 +14,9 @@ const Home = () => {
   return (
     <>
       <Banner data = {loaderData}/>
-      <SectionOne />
+      {/* <SectionOne />
       <SectionThree />
-      <SectionFour />
+      <SectionFour /> */}
       <ProjectPreviewSection/>
       <div className="h-[100px]"></div>
     </>

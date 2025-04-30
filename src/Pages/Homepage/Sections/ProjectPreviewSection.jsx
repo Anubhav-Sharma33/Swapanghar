@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-
 const ProjectPreviewSection = () => {
   const { data, isLoading, error } = useProjects();
 
@@ -37,14 +36,15 @@ const ProjectPreviewSection = () => {
 
   return (
     <SectionWrapper>
-      <div className="flex justify-center items-center mb-[20px] text-[1.75rem] font-bold">
-        <h3>Featured Projects</h3>
+      <div className="flex justify-center items-center mb-[20px]">
+        <h1 className="text-2xl md:text-3xl font-bold drop-shadow-sm uppercase">
+        Featured Projects
+        </h1>
       </div>
       <div className="w-full custom-slider-arrows px-5">
         <Slider {...settings}>
           {data.map((item) => (
-            <ProjectPreviewCard item = {item}
-            />
+            <ProjectPreviewCard item={item} />
           ))}
         </Slider>
       </div>

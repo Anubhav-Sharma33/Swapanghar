@@ -1,7 +1,6 @@
-//Things To be done:-
-//Split code into Components
-//Update if better css is possible
-//Update margin-padding , font-size, colour, hover-effect , font
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 const priceRangeMap = {
   "UpTo 1 Cr": { min: 0, max: 10000000 },
   "1-3 Cr": { min: 10000000, max: 30000000 },
@@ -9,18 +8,9 @@ const priceRangeMap = {
   "Above 5 Cr": { min: 50000000, max: Infinity },
 };
 
-const img = [
-  "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
-  "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
-  "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
-  "https://www.starestate.com/assets/images/homebanner/banner-villa.webp",
-];
-
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+const img = new Array(4).fill("https://www.starestate.com/assets/images/homebanner/banner-villa.webp");
 
 const Banner = ({ data }) => {
-  // console.log(data);
   const [index, setIndex] = useState(0);
   const propertyTypeRef = useRef();
   const locationRef = useRef();
@@ -29,161 +19,114 @@ const Banner = ({ data }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % img.length);
+      setIndex((prev) => (prev + 1) % img.length);
     }, 4000);
-
     return () => clearInterval(interval);
-  }, [img.length]);
+  }, []);
+
+  const handleSubmit = () => {
+    const propertyType = propertyTypeRef.current.value;
+    const location = locationRef.current.value;
+    const budget = budgetRef.current.value;
+    const params = new URLSearchParams();
+
+    if (propertyType) params.append("propertyType", propertyType);
+    if (location) params.append("location", location);
+    if (budget) params.append("budget", budget);
+
+    navigate(`/projects?${params.toString()}`);
+  };
 
   return (
     <div className="relative w-full h-[80vh] xl:h-[70vh] overflow-hidden flex">
       {/* Background Image */}
       <img
         src={img[index]}
-        alt="Background Illustration"
+        alt="Banner"
         className="absolute inset-0 w-full h-full object-cover object-center"
       />
 
-      {/* Great Place to Work Badge (top-right) */}
+      {/* Top-right Badge */}
       <div className="absolute top-4 right-4 z-20">
         <img
           src="https://www.starestate.com/assets/images/gow-logo.png"
-          alt="Great Place to Work Badge"
-          className="w-22 md:w-24"
+          alt="Great Place to Work"
+          className="w-20 md:w-24"
         />
       </div>
 
-      {/* Content Container positioned 30% from the top */}
-      <div className="absolute top-[25%] left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center text-center w-full ">
-        <div
-          id="main-container"
-          className="w-full flex justify-center items-center"
-        >
-          <div
-            id="main-flex"
-            className="w-full lg:w-[960px] flex justify-center items-center px-4"
-          >
-            <div
-              id="inner-outer-div"
-              className="flex flex-col justify-center items-center w-full max-w-[850px]"
-            >
-              {/* Heading */}
-              <div className="w-full text-center lg:text-left px-2">
-                <h1 className="text-lg md:text-lg lg:text-xl font-bold text-gray-800 mb-0 uppercase tracking-wider drop-shadow-sm">
-                  You Deserve The Best
-                </h1>
-              </div>
+      {/* Center Content */}
+      <div className="absolute top-[25%] left-1/2 transform -translate-x-1/2 z-20 w-full px-4">
+        <div className="max-w-[960px] mx-auto text-center">
+          <h1 className="text-2xl md:text-3xl font-bold drop-shadow-sm uppercase">
+            You Deserve The Best
+          </h1>
 
-              {/* Search Form */}
-              <div
-                id="search-form"
-                className="flex flex-col justify-center items-center w-full lg:bg-white/40 lg:backdrop-blur-md lg:shadow-frosted p-2"
+          {/* Form Section */}
+          <div className="bg-white/40 backdrop-blur-md rounded-lg p-4 shadow-lg">
+            <form onSubmit={(e) => e.preventDefault()} className="flex flex-col lg:flex-row gap-3">
+              <select
+                ref={propertyTypeRef}
+                className="flex-1 py-3 px-4 rounded-md text-sm bg-white text-gray-800 focus:outline-none border border-gray-300"
               >
-                <form className="w-full">
-                  <div
-                    id="main-search-form"
-                    className="flex flex-col w-full gap-y-[10px] lg:flex-row justify-center items-center lg:gap-x-[10px]"
-                  >
-                    {/* Form Inputs */}
-                    <div
-                      id="search-form"
-                      className="flex flex-col w-full justify-center items-center lg:flex-row lg:w-[84%]"
-                    >
-                      {/* Property Type */}
-                      <div
-                        id="property-type"
-                        className="w-full flex lg:flex-1 justify-center items-center bg-white border-b border-b-[#0000001a] md:border md:border-[#0000001a]"
-                      >
-                        <select
-                          ref={propertyTypeRef}
-                          className="w-full text-center py-4 px-3 text-sm text-gray-700 focus:outline-none"
-                        >
-                          <option value="">Property Type</option>
-                          <option value="Commercial">Commercial</option>
-                          <option value="Residential">Residential</option>
-                        </select>
-                      </div>
+                <option value="">Property Type</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Residential">Residential</option>
+              </select>
 
-                      {/* Project Location */}
-                      <div
-                        id="property-location"
-                        className="w-full flex lg:flex-1 justify-center items-center bg-white border-b border-b-[#0000001a] md:border md:border-[#0000001a]"
-                      >
-                        <select
-                          ref={locationRef}
-                          className="w-full text-center py-4 px-3 text-sm text-gray-700 focus:outline-none"
-                        >
-                          <option value="">Project Location</option>
-                          {data.cityLocation.map((item, idx) => (
-                            <option key={idx} value={item.name}>
-                              {item.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+              <select
+                ref={locationRef}
+                className="flex-1 py-3 px-4 rounded-md text-sm bg-white text-gray-800 focus:outline-none border border-gray-300"
+              >
+                <option value="">Project Location</option>
+                {data.cityLocation.map((item, idx) => (
+                  <option key={idx} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
 
-                      {/* Budget */}
-                      <div
-                        id="budget"
-                        className="w-full flex lg:flex-1 justify-center items-center bg-white border-b border-b-[#0000001a] md:border md:border-[#0000001a]"
-                      >
-                        <select
-                          ref={budgetRef}
-                          className="w-full text-center py-4 px-3 text-sm text-gray-700 focus:outline-none"
-                        >
-                          <option value="">Budget</option>
-                          {Object.keys(priceRangeMap).map((label) => (
-                            <option key={label} value={label}>
-                              {label}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
+              <select
+                ref={budgetRef}
+                className="flex-1 py-3 px-4 rounded-md text-sm bg-white text-gray-800 focus:outline-none border border-gray-300"
+              >
+                <option value="">Budget</option>
+                {Object.keys(priceRangeMap).map((label) => (
+                  <option key={label} value={label}>
+                    {label}
+                  </option>
+                ))}
+              </select>
 
-                    {/* Submit Button */}
-                    <div
-                      id="search-button"
-                      className="flex justify-center items-center w-full lg:w-[16%] bg-black text-white"
-                    >
-                      <button
-                        type="button"
-                        className="w-full py-4 px-8 text-sm text-white focus:outline-none"
-                        onClick={() => {
-                          const propertyType = propertyTypeRef.current.value;
-                          const location = locationRef.current.value;
-                          const budget = budgetRef.current.value;
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="w-full lg:w-auto py-3 px-6 bg-black text-white text-sm rounded-md hover:bg-gray-900 transition"
+              >
+                Submit
+              </button>
+            </form>
 
-                          const params = new URLSearchParams();
-
-                          if (propertyType)
-                            params.append("propertyType", propertyType);
-                          if (location) params.append("location", location);
-                          if (budget) params.append("budget", budget);
-
-                          // Navigate regardless of whether any field is selected
-                          navigate(`/projects?${params.toString()}`);
-                        }}
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                </form>
-
-                {/* Placeholder for Navigation Menu */}
-                <div className="flex flex-col my-4 lg:mb-0 lg:flex-row w-full lg:space-x-2 ">
-                  <a className="bg-white/40 backdrop-blur-md shadow-frosted mb-2 lg:md-0 lg:w-1/3 hover:cursor-pointer">
-                    NEW LAUNCHES
-                  </a>
-                  <a className="bg-white/40 backdrop-blur-md shadow-frosted mb-2 lg:md-0 lg:w-1/3 hover:cursor-pointer">
-                    COMMERCIAL PROPERTIES
-                  </a>
-                  <a className="bg-white/40 backdrop-blur-md shadow-frosted mb-2 lg:md-0 lg:w-1/3 hover:cursor-pointer">
-                    RESEDENTIAL PROPERTIES
-                  </a>
-                </div>
-              </div>
+            {/* Navigation Buttons */}
+            <div className="mt-6 flex flex-col lg:flex-row gap-3">
+              <Link
+                to="/projects/new-launches"
+                className="flex-1 text-center py-3 bg-white/50 rounded-md text-sm font-medium hover:shadow-md hover:scale-105 transition"
+              >
+                NEW LAUNCHES
+              </Link>
+              <Link
+                to="/projects/commercial"
+                className="flex-1 text-center py-3 bg-white/50 rounded-md text-sm font-medium hover:shadow-md hover:scale-105 transition"
+              >
+                COMMERCIAL PROPERTIES
+              </Link>
+              <Link
+                to="/projects/residential"
+                className="flex-1 text-center py-3 bg-white/50 rounded-md text-sm font-medium hover:shadow-md hover:scale-105 transition"
+              >
+                RESIDENTIAL PROPERTIES
+              </Link>
             </div>
           </div>
         </div>
