@@ -2,6 +2,7 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "../Footer";
 import LowerNavBar from "../ProjectDetails/LowerNavBAr";
+import FormModalContext from "../../../Store/Context/FormModalContext";
 
 
 export default function Root(){
@@ -10,6 +11,7 @@ export default function Root(){
     
     return(
         <>
+        <FormModalContext>
         <header className='sticky top-0 z-30'>
             <Navbar data = {data}/>
         </header>
@@ -20,6 +22,7 @@ export default function Root(){
             <Footer/>
         </footer>
         <LowerNavBar/>
+        </FormModalContext>
         </>
     )
 }

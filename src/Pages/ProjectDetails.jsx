@@ -21,7 +21,7 @@ const ProjectDetails = () => {
   const data = useLoaderData();
   // console.log(data);
   const {faqs,amenities,floorPlan,floorPlansContent,banners,brochureWalkthrough,location,projectGallery,project_details,aboutUs,quickDetails} = data;
-  onScroll()
+  onScroll();
 
 
   return (
