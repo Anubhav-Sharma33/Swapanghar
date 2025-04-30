@@ -18,7 +18,7 @@ const Home = () => {
       <SectionThree />
       <SectionFour /> */}
       <ProjectPreviewSection/>
-      <div className="h-[100px]"></div>
+      
     </>
   );
 };

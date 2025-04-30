@@ -35,7 +35,7 @@ const ProjectPreviewSection = () => {
   if (error) return <div>Error loading projects</div>;
 
   return (
-    <SectionWrapper>
+    <SectionWrapper className="pb-[2.5rem]">
       <div className="flex justify-center items-center mb-[20px]">
         <h1 className="text-2xl md:text-3xl font-bold drop-shadow-sm uppercase">
         Featured Projects
