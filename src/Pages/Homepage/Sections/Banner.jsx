@@ -154,19 +154,15 @@ const Banner = ({ data }) => {
                           const location = locationRef.current.value;
                           const budget = budgetRef.current.value;
 
-                          if (propertyType && location && budget) {
-                            navigate(
-                              `/projects?propertyType=${encodeURIComponent(
-                                propertyType
-                              )}&location=${encodeURIComponent(
-                                location
-                              )}&budget=${encodeURIComponent(budget)}`
-                            );
-                          } else {
-                            alert(
-                              "Please select all fields before submitting."
-                            );
-                          }
+                          const params = new URLSearchParams();
+
+                          if (propertyType)
+                            params.append("propertyType", propertyType);
+                          if (location) params.append("location", location);
+                          if (budget) params.append("budget", budget);
+
+                          // Navigate regardless of whether any field is selected
+                          navigate(`/projects?${params.toString()}`);
                         }}
                       >
                         Submit
