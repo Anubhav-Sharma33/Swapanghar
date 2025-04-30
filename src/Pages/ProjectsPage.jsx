@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData,Link } from "react-router-dom";
 import onScroll from "../hooks/scrollToTop";
 import SectionWrapper from "../Components/UI/ProjectDetails/SectionWrapper";
 import ProjectPreviewCard from "../Components/ProjectPreviewCard";
@@ -46,15 +46,15 @@ const ProjectsPage = () => {
             }}
           >
             <li className="flex items-center gap-x-2">
-              <a href="/" className="text-primary hover:underline">
+              <Link href="/" className="text-primary hover:underline">
                 Home
-              </a>
+              </Link>
               <span className="text-gray-400">/</span>
             </li>
             <li className="flex items-center gap-x-2">
-              <a href="#" className="text-primary hover:underline">
+              <Link href="/projects" className="text-primary hover:underline">
                 Projects
-              </a>
+              </Link>
             </li>
           </ol>
         </div>
