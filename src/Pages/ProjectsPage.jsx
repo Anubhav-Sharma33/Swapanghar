@@ -46,7 +46,7 @@ const ProjectsPage = () => {
             }}
           >
             <li className="flex items-center gap-x-2">
-              <Link href="/" className="text-primary hover:underline">
+              <Link to="/" className="text-primary hover:underline">
                 Home
               </Link>
               <span className="text-gray-400">/</span>
